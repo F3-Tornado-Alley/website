@@ -21,6 +21,7 @@ export default function Navigation() {
     { name: 'Locations', path: '/locations' },
     { name: 'Resources', path: '/resources' },
     { name: 'Getting Started', path: '/getting-started' },
+    { name: 'Contact Us', path: '/contact-us' },
   ];
 
   return (
