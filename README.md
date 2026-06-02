@@ -16,8 +16,8 @@ A modern, SEO-optimized website for the Tornado Alley F3 fitness community, buil
 
 ## Prerequisites
 
-- Node.js 20.9.0 or higher (required for Next.js 15+)
-- npm, yarn, pnpm, or bun package manager
+- Node.js 20.9.0 or higher (required for Next.js 16)
+- [pnpm](https://pnpm.io/) package manager (the version is pinned via the `packageManager` field in `package.json`; run `corepack enable` to use it automatically)
 
 ## Getting Started
 
@@ -26,13 +26,13 @@ A modern, SEO-optimized website for the Tornado Alley F3 fitness community, buil
 1. Install dependencies:
 
 ```bash
-npm install
+pnpm install
 ```
 
 2. Run the development server:
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 3. Open [http://localhost:3000](http://localhost:3000) to view the site.
@@ -42,7 +42,7 @@ npm run dev
 Build the static site:
 
 ```bash
-npm run build
+pnpm build
 ```
 
 This creates an optimized production build in the `out/` directory.
@@ -97,7 +97,7 @@ Once configured, every push to `main` will automatically build and deploy your s
 3. Navigate to Workers & Pages > Create application > Pages
 4. Connect your repository
 5. Configure build settings:
-   - **Build command**: `npm run build`
+   - **Build command**: `pnpm build`
    - **Build output directory**: `out`
    - **Node version**: 20.9.0 or higher
 6. Deploy
@@ -119,7 +119,7 @@ wrangler login
 3. Deploy:
 
 ```bash
-npm run build
+pnpm build
 wrangler pages deploy out --project-name=tornado-alley
 ```
 
@@ -235,7 +235,7 @@ website/
 
 ## Tech Stack
 
-- [Next.js 15](https://nextjs.org/) - React framework
+- [Next.js 16](https://nextjs.org/) - React framework
 - [React 19](https://react.dev/) - UI library
 - [TypeScript 5](https://www.typescriptlang.org/) - Type safety
 - [Tailwind CSS v4](https://tailwindcss.com/) - Styling
@@ -245,11 +245,12 @@ website/
 ## Development Commands
 
 ```bash
-npm install          # Install dependencies
-npm run dev          # Start dev server at http://localhost:3000
-npm run build        # Build static site to out/ directory
-npm run start        # Start production server (after build)
-npm run lint         # Run ESLint
+pnpm install         # Install dependencies
+pnpm dev             # Start dev server at http://localhost:3000
+pnpm build           # Build static site to out/ directory
+pnpm start           # Start production server (after build)
+pnpm lint            # Run ESLint
+pnpm test:e2e        # Run Playwright e2e tests
 ```
 
 ## License
