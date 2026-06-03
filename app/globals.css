@@ -31,3 +31,53 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-titillium-web), var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
+
+/* ===== Lightweight homepage animations (CSS only) ===== */
+
+/* Hero text entrance — staggered fade-up via inline animation-delay */
+@keyframes ta-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ta-fade-up {
+  animation: ta-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Looping ticker marquee — two identical halves, shift by one half */
+@keyframes ta-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.ta-marquee {
+  animation: ta-marquee 100s linear infinite;
+  will-change: transform;
+}
+
+/* Pause the ticker on hover so it can be read */
+.ta-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .ta-fade-up {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .ta-marquee {
+    animation: none;
+  }
+}
