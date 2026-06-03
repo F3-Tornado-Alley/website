@@ -4,9 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState, useSyncExternalStore } from 'react';
-import { Oswald } from 'next/font/google';
-
-const oswald = Oswald({ weight: ['400', '500', '600', '700'], subsets: ['latin'] });
+import { oswald } from '../fonts';
 
 // OKC Thunder palette
 const NAVY = '#002D62';

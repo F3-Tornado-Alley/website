@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { teko, saira } from "../fonts";
+import { ORANGE, BLUE } from "../brand";
+import PageHero from "../components/PageHero";
 
 export const metadata: Metadata = {
   title: "Getting Started | Tornado Alley F3",
-  description: "Join Tornado Alley F3 workouts. Learn what to expect, how to get started, and what to bring. Free, peer-led outdoor fitness for men in the Oklahoma City metro area.",
+  description:
+    "Join Tornado Alley F3 workouts. Learn what to expect, how to get started, and what to bring. Free, peer-led outdoor fitness for men in the Oklahoma City metro area.",
   keywords: ["F3 getting started", "join F3", "free workout", "outdoor fitness", "Oklahoma City fitness", "mens workout group"],
   openGraph: {
     title: "Getting Started | Tornado Alley F3",
@@ -11,91 +16,70 @@ export const metadata: Metadata = {
   },
 };
 
+const steps = [
+  { n: "01", title: "Find a Workout", body: "Browse the locations page to find an AO near you. Each spot lists meeting times and details." },
+  { n: "02", title: "Just Show Up", body: "No registration. No forms. No RSVPs. Show up at the time and place, introduce yourself, and tell us you're an FNG." },
+  { n: "03", title: "Post & Stick Around", body: "After the beatdown, hang for the Circle of Trust and coffee. That's where the real F3 happens." },
+];
+
+const bring = ["Athletic clothing for the weather", "Water bottle", "A positive attitude", "No equipment — we bring everything"];
+
 export default function GettingStartedPage() {
   return (
-    <div className="min-h-screen bg-white">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="prose prose-lg max-w-none">
-          <div className="bg-gray-50 p-4 rounded-lg mb-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-2 font-(family-name:--font-titillium-web)">
-              What to Expect
-            </h2>
-            <p className="text-gray-700 mb-0 text-base">
-              F3 workouts are free, peer-led, and held outdoors in all weather conditions.
-              No experience is necessary, and all fitness levels are welcome.
-            </p>
-          </div>
+    <main className={`${saira.className} min-h-screen bg-[#0A1424] text-white`}>
+      <PageHero
+        kicker="New to F3 [FNG]"
+        title="Getting Started"
+        subtitle="Free, peer-led, held outdoors in all weather. No experience necessary — all fitness levels welcome."
+      />
 
-          <div className="space-y-4">
-            <div className="border-l-4 border-blue-600 pl-4">
-              <h3 className="text-lg font-bold text-gray-900 mb-1 font-(family-name:--font-titillium-web)">
-                Step 1: Find a Workout
-              </h3>
-              <p className="text-gray-700 text-base">
-                Browse our locations page to find a workout near you. Each location lists
-                meeting times and details.
-              </p>
-            </div>
-
-            <div className="border-l-4 border-blue-600 pl-4">
-              <h3 className="text-lg font-bold text-gray-900 mb-1 font-(family-name:--font-titillium-web)">
-                Step 2: Just Show Up
-              </h3>
-              <p className="text-gray-700 text-base">
-                No registration required. Simply show up at the designated time and location.
-                Introduce yourself and let us know you&apos;re new!
-              </p>
-            </div>
-
-            <div className="border-l-4 border-blue-600 pl-4">
-              <h3 className="text-lg font-bold text-gray-900 mb-1 font-(family-name:--font-titillium-web)">
-                Step 3: Post Workout
-              </h3>
-              <p className="text-gray-700 text-base">
-                After the workout, stick around for coffee and conversation. This is where
-                the real F3 experience happens.
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-blue-50 border-2 border-blue-200 p-4 rounded-lg mt-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-2 font-(family-name:--font-titillium-web)">
-              What to Bring
-            </h2>
-            <ul className="list-disc list-inside text-gray-700 space-y-1 text-base">
-              <li>Athletic clothing appropriate for the weather</li>
-              <li>Water bottle</li>
-              <li>A positive attitude</li>
-              <li>No equipment necessary - we provide everything</li>
-            </ul>
-          </div>
-
-          <div className="mt-6 p-5 bg-gray-900 text-white rounded-lg">
-            <p className="text-lg mb-3">
-              Ready to start? Find a workout location near you!
-            </p>
-            <a
-              href="/locations"
-              className="inline-flex items-center px-6 py-3 bg-white text-gray-900 font-bold rounded-lg hover:bg-gray-100 transition-colors"
+      <div className="max-w-5xl mx-auto px-6 py-12">
+        {/* Steps */}
+        <div className="space-y-4">
+          {steps.map((s, i) => (
+            <div
+              key={s.n}
+              className="flex items-start gap-6 bg-[#111E33] -skew-x-3 px-6 py-6 transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#16243D] hover:shadow-xl"
             >
-              View Locations
-              <svg
-                className="ml-2 w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </a>
-          </div>
+              <div className="skew-x-3 flex items-start gap-6">
+                <span className={`${teko.className} font-black italic text-4xl md:text-5xl shrink-0 w-16`} style={{ color: i % 2 ? BLUE : ORANGE }}>
+                  {s.n}
+                </span>
+                <div>
+                  <h2 className={`${teko.className} font-black italic uppercase text-2xl md:text-3xl mb-1`}>{s.title}</h2>
+                  <p className="text-gray-400">{s.body}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* What to bring */}
+        <div className="mt-10 bg-[#111E33] border-t-4 p-8" style={{ borderColor: ORANGE }}>
+          <h2 className={`${teko.className} font-black italic uppercase text-3xl mb-5`}>What to Bring</h2>
+          <ul className="grid sm:grid-cols-2 gap-3">
+            {bring.map((b) => (
+              <li key={b} className="flex items-center gap-3 text-gray-300">
+                <span className="inline-block w-2 h-2 rotate-45 shrink-0" style={{ backgroundColor: ORANGE }} />
+                {b}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* CTA */}
+        <div className="mt-10 text-center">
+          <Link
+            href="/locations"
+            className="group -skew-x-12 inline-block px-12 py-5 shadow-2xl transition-all duration-200 hover:scale-[1.04] hover:brightness-110 hover:shadow-[0_12px_45px_-8px_rgba(255,90,31,0.55)]"
+            style={{ backgroundColor: ORANGE }}
+          >
+            <span className={`${teko.className} skew-x-12 inline-block font-black italic uppercase text-2xl tracking-wide`}>
+              Find a Workout <span className="inline-block transition-transform duration-200 group-hover:translate-x-1.5">→</span>
+            </span>
+          </Link>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

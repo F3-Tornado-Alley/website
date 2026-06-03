@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
-import Link from 'next/link';
+import Link from "next/link";
+import { regions, getCity } from "./data";
+import { teko, saira } from "../fonts";
+import { ORANGE, BLUE } from "../brand";
+import PageHero from "../components/PageHero";
 
 export const metadata: Metadata = {
   title: "Workout Locations | Tornado Alley F3",
-  description: "Find F3 workout locations across the Oklahoma City metro area including Edmond, Mustang, Norman, OKC, and Yukon. View interactive map and workout schedules.",
+  description:
+    "Find F3 workout locations across the Oklahoma City metro area including Edmond, Mustang, Norman, OKC, and Yukon. View interactive map and workout schedules.",
   keywords: ["F3 locations", "Oklahoma City workouts", "Edmond fitness", "Norman F3", "Mustang workouts", "Yukon fitness", "OKC F3"],
   openGraph: {
     title: "Workout Locations | Tornado Alley F3",
@@ -12,180 +17,99 @@ export const metadata: Metadata = {
   },
 };
 
-export default function LocationsPage() {
-  const regions = [
-    {
-      name: 'Tornado Alley',
-      description: 'Edmond area workout locations',
-      statsUrl: 'https://pax-vault.f3nation.com/stats/region/35003',
-      regionInfoUrl: 'https://regions.f3nation.com/tornado-alley',
-      cities: [
-        { name: 'Edmond', path: '/locations/edmond' }
-      ]
-    },
-    {
-      name: 'Boomtown',
-      description: 'Mustang, Norman, OKC, and Yukon area workout locations',
-      statsUrl: 'https://pax-vault.f3nation.com/stats/region/50857',
-      regionInfoUrl: null,
-      cities: [
-        { name: 'Mustang', path: '/locations/mustang' },
-        { name: 'Norman', path: '/locations/norman' },
-        { name: 'Oklahoma City', path: '/locations/okc' },
-        { name: 'Yukon', path: '/locations/yukon' }
-      ]
-    }
-  ];
+const MAP_SRC = "https://map.f3nation.com/?lat=35.520000&lng=-97.493300&zoom=11";
 
+export default function LocationsPage() {
   return (
-    <div className="min-h-screen bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        {/* Map and Regions Side by Side */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-12">
-          {/* F3 Nation Map Section - Takes up 2/3 on desktop */}
+    <main className={`${saira.className} min-h-screen bg-[#0A1424] text-white`}>
+      <PageHero
+        kicker="Oklahoma City Metro"
+        title="Locations"
+        subtitle="Free, peer-led workouts across two regions — just show up."
+      />
+
+      <div className="max-w-6xl mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Map */}
           <div className="lg:col-span-2">
-            <div className="flex items-center justify-between mb-2">
-              <h2 className="text-xl font-bold text-gray-900 font-(family-name:--font-titillium-web)">
-                F3 Workout Map
-              </h2>
+            <div className="flex items-center justify-between mb-3">
+              <h2 className={`${teko.className} font-black italic uppercase text-2xl`}>F3 Workout Map</h2>
               <a
-                href="https://map.f3nation.com/?lat=35.520000&lng=-97.493300&zoom=11"
+                href={MAP_SRC}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center text-xs"
+                className="text-sm uppercase tracking-wide font-semibold transition-colors hover:brightness-110"
+                style={{ color: "#5BB4E8" }}
               >
-                Full Screen
-                <svg
-                  className="w-3 h-3 ml-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  />
-                </svg>
+                Full Screen ↗
               </a>
             </div>
-            <div className="bg-gray-100 rounded-lg overflow-hidden border-2 border-gray-200 h-[600px]">
-              <iframe
-                src="https://map.f3nation.com/?lat=35.520000&lng=-97.493300&zoom=11"
-                className="w-full h-full"
-                title="F3 Nation Workout Map"
-                loading="lazy"
-              />
+            <div className="overflow-hidden border-2 border-white/10 h-150">
+              <iframe src={MAP_SRC} className="w-full h-full" title="F3 Nation Workout Map" loading="lazy" />
             </div>
           </div>
 
-          {/* Regions Section - Takes up 1/3 on desktop, stacked vertically */}
-          <div className="lg:col-span-1 flex flex-col gap-3">
-            <h2 className="text-xl font-bold text-gray-900 font-(family-name:--font-titillium-web)">
-              Our Regions
-            </h2>
+          {/* Regions */}
+          <div className="lg:col-span-1 flex flex-col gap-4">
+            <h2 className={`${teko.className} font-black italic uppercase text-2xl`}>Our Regions</h2>
 
-            {regions.map((region) => (
+            {regions.map((region, i) => (
               <div
                 key={region.name}
-                className="bg-white border-2 border-gray-200 rounded-lg p-3 hover:shadow-lg transition-shadow flex-1"
+                className="bg-[#111E33] border-t-4 p-5 transition-all duration-200 hover:-translate-y-1 hover:bg-[#16243D] hover:shadow-2xl"
+                style={{ borderColor: i % 2 ? BLUE : ORANGE }}
               >
-                <h3 className="text-lg font-bold text-gray-900 mb-1 font-(family-name:--font-titillium-web)">
-                  {region.name}
-                </h3>
-                <p className="text-gray-700 mb-2 text-xs">
-                  {region.description}
-                </p>
+                <h3 className={`${teko.className} font-black italic uppercase text-2xl mb-1`}>{region.name}</h3>
+                <p className="text-gray-400 text-sm mb-4">{region.description}</p>
 
-                {/* Region Links */}
-                <div className="flex gap-1.5 mb-2">
+                <div className="flex gap-2 mb-4">
                   <a
                     href={region.statsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 inline-flex items-center justify-center px-2 py-1.5 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors font-medium text-xs"
+                    className={`${teko.className} flex-1 text-center font-bold italic uppercase tracking-wide px-3 py-2 text-sm text-white transition-all duration-200 hover:brightness-110`}
+                    style={{ backgroundColor: ORANGE }}
                   >
-                    Stats
-                    <svg
-                      className="w-3 h-3 ml-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                      />
-                    </svg>
+                    Stats ↗
                   </a>
-
                   {region.regionInfoUrl ? (
                     <a
                       href={region.regionInfoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 inline-flex items-center justify-center px-2 py-1.5 bg-gray-900 text-white rounded hover:bg-gray-800 transition-colors font-medium text-xs"
+                      className={`${teko.className} flex-1 text-center font-bold italic uppercase tracking-wide px-3 py-2 text-sm text-white border-2 border-white/20 transition-all duration-200 hover:border-white/60 hover:bg-white/5`}
                     >
-                      Info
-                      <svg
-                        className="w-3 h-3 ml-1"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                        />
-                      </svg>
+                      Info ↗
                     </a>
                   ) : (
-                    <span className="flex-1 inline-flex items-center justify-center px-2 py-1.5 bg-gray-200 text-gray-500 rounded font-medium text-xs">
+                    <span className={`${teko.className} flex-1 text-center font-bold italic uppercase tracking-wide px-3 py-2 text-sm text-white/30 border-2 border-white/10`}>
                       Info Soon
                     </span>
                   )}
                 </div>
 
-                {/* City Links */}
-                <div className="border-t border-gray-200 pt-2">
-                  <p className="text-xs font-semibold text-gray-900 mb-1.5">
-                    Workout Locations:
-                  </p>
-                  <div className="flex flex-col gap-1">
-                    {region.cities.map((city) => (
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-2">Workout Locations</p>
+                <div className="flex flex-col gap-1.5">
+                  {region.citySlugs.map((slug) => {
+                    const c = getCity(slug);
+                    if (!c) return null;
+                    return (
                       <Link
-                        key={city.path}
-                        href={city.path}
-                        className="inline-flex items-center px-2 py-1 bg-gray-100 text-gray-900 rounded hover:bg-gray-200 transition-colors text-xs font-medium"
+                        key={slug}
+                        href={`/locations/${slug}`}
+                        className="group flex items-center justify-between bg-white/5 px-3 py-2 text-sm font-semibold uppercase tracking-wide transition-colors hover:bg-white/10"
                       >
-                        {city.name}
-                        <svg
-                          className="ml-auto w-3 h-3"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M9 5l7 7-7 7"
-                          />
-                        </svg>
+                        <span>{c.name}</span>
+                        <span className="transition-transform duration-200 group-hover:translate-x-1" style={{ color: ORANGE }}>→</span>
                       </Link>
-                    ))}
-                  </div>
+                    );
+                  })}
                 </div>
               </div>
             ))}
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

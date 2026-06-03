@@ -1,18 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Teko, Saira_Condensed } from "next/font/google";
-
-// Display headlines: Teko (tall condensed). Body & labels: Saira Condensed.
-const teko = Teko({ weight: ["500", "600", "700"], subsets: ["latin"] });
-const saira = Saira_Condensed({ weight: ["500", "600", "700", "900"], subsets: ["latin"] });
-
-// Brand accents
-const ORANGE = "#FF5A1F"; // storm orange
-const BLUE = "#007ace";
-const GRAD = `linear-gradient(100deg, ${BLUE} 0%, ${ORANGE} 100%)`;
-
-const HERO_IMG =
-  "https://pub-c59a7d8d850842288d7852af88d4ee66.r2.dev/images/2025_12_31_ground_zero.jpg";
+import { teko, saira } from "./fonts";
+import { ORANGE, BLUE, GRAD, HERO_IMG } from "./brand";
 
 const principles = [
   { name: "Free of Charge", tagline: "Never pay to workout, ever." },

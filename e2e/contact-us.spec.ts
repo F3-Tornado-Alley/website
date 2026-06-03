@@ -30,6 +30,7 @@ test.describe("Contact Us page", () => {
   test("navigation shows Contact Us as active", async ({ page }) => {
     const navLink = page.locator("nav").locator('a[href="/contact-us/"]').first();
     await expect(navLink).toBeVisible();
-    await expect(navLink).toHaveClass(/bg-white\/10/);
+    // Active nav links render a full-width underline (after:w-full); inactive use after:w-0.
+    await expect(navLink).toHaveClass(/after:w-full/);
   });
 });

@@ -1,161 +1,73 @@
 import type { Metadata } from "next";
+import { teko, saira } from "../fonts";
+import { ORANGE, BLUE } from "../brand";
+import PageHero from "../components/PageHero";
 
 export const metadata: Metadata = {
   title: "Contact Us | Tornado Alley F3",
   description:
     "Get in touch with F3 Tornado Alley. Reach out via email or connect with us on social media for questions about workouts, locations, and getting started.",
-  keywords: [
-    "F3 Tornado Alley contact",
-    "F3 Oklahoma contact",
-    "F3 workout questions",
-    "F3 Tornado Alley email",
-  ],
+  keywords: ["F3 Tornado Alley contact", "F3 Oklahoma contact", "F3 workout questions", "F3 Tornado Alley email"],
   openGraph: {
     title: "Contact Us | Tornado Alley F3",
-    description:
-      "Get in touch with F3 Tornado Alley via email or social media.",
+    description: "Get in touch with F3 Tornado Alley via email or social media.",
     url: "https://tornadoalley.f3nation.com/contact-us",
   },
 };
 
+const socials = [
+  { name: "Facebook", href: "https://www.facebook.com/f3tornadoalley" },
+  { name: "Instagram", href: "https://www.instagram.com/f3tornadoalley/" },
+  { name: "X / Twitter", href: "https://x.com/f3tornadoalley" },
+  { name: "TikTok", href: "https://www.tiktok.com/@f3tornadoalley" },
+];
+
 export default function ContactUsPage() {
   return (
-    <div className="min-h-screen bg-white">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <p className="text-lg text-gray-700 mb-8">
-          Have questions about F3 Tornado Alley, our workouts, or how to get
-          started? We&apos;d love to hear from you. Reach out via email or
-          connect with us on social media.
-        </p>
+    <main className={`${saira.className} min-h-screen bg-[#0A1424] text-white`}>
+      <PageHero
+        kicker="Get In Touch"
+        title="Contact Us"
+        subtitle="Questions about workouts, locations, or getting started? We'd love to hear from you."
+      />
 
+      <div className="max-w-5xl mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Email Card */}
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4 font-(family-name:--font-titillium-web)">
-              Email Us
-            </h2>
-            <p className="text-gray-700 mb-4">
-              Send us an email and we&apos;ll get back to you as soon as
-              possible.
-            </p>
+          {/* Email */}
+          <div className="bg-[#111E33] border-t-4 p-8" style={{ borderColor: ORANGE }}>
+            <h2 className={`${teko.className} font-black italic uppercase text-3xl mb-3`}>Email Us</h2>
+            <p className="text-gray-400 mb-5">Send us a note and we&apos;ll get back to you as soon as possible.</p>
             <a
               href="mailto:f3tornadoallery@gmail.com"
-              className="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center"
+              className="group inline-flex items-center gap-2 font-bold uppercase tracking-wide transition-colors"
+              style={{ color: "#5BB4E8" }}
             >
               f3tornadoallery@gmail.com
-              <svg
-                className="w-4 h-4 ml-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                />
-              </svg>
+              <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
             </a>
           </div>
 
-          {/* Social Media Card */}
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4 font-(family-name:--font-titillium-web)">
-              Follow Us
-            </h2>
-            <p className="text-gray-700 mb-4">
-              Stay connected and follow our latest updates on social media.
-            </p>
-            <div className="flex flex-col space-y-3">
-              <a
-                href="https://www.facebook.com/f3tornadoalley"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center"
-              >
-                Facebook
-                <svg
-                  className="w-4 h-4 ml-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+          {/* Social */}
+          <div className="bg-[#111E33] border-t-4 p-8" style={{ borderColor: BLUE }}>
+            <h2 className={`${teko.className} font-black italic uppercase text-3xl mb-3`}>Follow Us</h2>
+            <p className="text-gray-400 mb-5">Stay connected and follow our latest updates on social media.</p>
+            <div className="flex flex-col gap-2.5">
+              {socials.map((s) => (
+                <a
+                  key={s.name}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-2 font-semibold uppercase tracking-wide text-gray-300 transition-colors hover:text-white"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  />
-                </svg>
-              </a>
-              <a
-                href="https://www.instagram.com/f3tornadoalley/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center"
-              >
-                Instagram
-                <svg
-                  className="w-4 h-4 ml-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  />
-                </svg>
-              </a>
-              <a
-                href="https://x.com/f3tornadoalley"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center"
-              >
-                X / Twitter
-                <svg
-                  className="w-4 h-4 ml-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  />
-                </svg>
-              </a>
-              <a
-                href="https://www.tiktok.com/@f3tornadoalley"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center"
-              >
-                TikTok
-                <svg
-                  className="w-4 h-4 ml-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  />
-                </svg>
-              </a>
+                  {s.name}
+                  <span className="transition-transform duration-200 group-hover:translate-x-1" style={{ color: ORANGE }}>↗</span>
+                </a>
+              ))}
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
