@@ -38,11 +38,11 @@ export default function ContactUsPage() {
             <h2 className={`${teko.className} font-black italic uppercase text-3xl mb-3`}>Email Us</h2>
             <p className="text-gray-400 mb-5">Send us a note and we&apos;ll get back to you as soon as possible.</p>
             <a
-              href="mailto:f3tornadoallery@gmail.com"
+              href="mailto:f3tornadoalley@gmail.com"
               className="group inline-flex items-center gap-2 font-bold uppercase tracking-wide transition-colors"
               style={{ color: "#5BB4E8" }}
             >
-              f3tornadoallery@gmail.com
+              f3tornadoalley@gmail.com
               <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
             </a>
           </div>

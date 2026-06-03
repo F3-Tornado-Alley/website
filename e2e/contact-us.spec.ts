@@ -10,9 +10,9 @@ test.describe("Contact Us page", () => {
   });
 
   test("displays email link with correct href", async ({ page }) => {
-    const emailLink = page.locator('a[href="mailto:f3tornadoallery@gmail.com"]');
+    const emailLink = page.locator('a[href="mailto:f3tornadoalley@gmail.com"]');
     await expect(emailLink).toBeVisible();
-    await expect(emailLink).toContainText("f3tornadoallery@gmail.com");
+    await expect(emailLink).toContainText("f3tornadoalley@gmail.com");
   });
 
   test("displays social media links", async ({ page }) => {
