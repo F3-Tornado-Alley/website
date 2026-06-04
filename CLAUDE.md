@@ -10,10 +10,11 @@ This is a Next.js-based multi-page website for the F3 Tornado Alley fitness comm
 
 ### Development
 ```bash
-npm install          # Install dependencies
-npm run dev          # Start dev server at http://localhost:3000
-npm run build        # Build static site to out/ directory
-npm run lint         # Run ESLint
+pnpm install         # Install dependencies
+pnpm dev             # Start dev server at http://localhost:3000
+pnpm build           # Build static site to out/ directory
+pnpm lint            # Run ESLint
+pnpm test:e2e        # Run Playwright e2e tests
 ```
 
 ### Deployment
@@ -48,7 +49,7 @@ This project uses Next.js with static export (`output: "export"`) configured in 
 
 **GitHub Actions Workflow** (`.github/workflows/deploy.yml`):
 - Triggers on push/PR to `main` branch
-- Uses Node.js 20 (required for Next.js 15+)
+- Uses Node.js 20 (required for Next.js 16)
 - Deploys to Cloudflare Pages project named `tornado-alley`
 - Requires secrets: `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`
 - Branch protection requires admin privileges to merge
@@ -141,14 +142,18 @@ Cities are listed alphabetically within each region.
 - Consistent spacing: `p-4`, `mb-4`, `gap-4` for smaller elements; `p-6`, `mb-6`, `gap-6` for larger
 - Color palette: Gray scale for text, blue (`blue-600`) for primary actions, black nav bar
 
+## Package Manager
+
+This project uses **pnpm** (pinned via the `packageManager` field in `package.json`). The lockfile is `pnpm-lock.yaml`. CI installs with `pnpm install --frozen-lockfile`. Use `pnpm` rather than `npm`/`yarn`.
+
 ## Node.js Version
 
-Requires Node.js 20.9.0+ (Next.js 15 requirement). GitHub Actions uses Node 20.
+Requires Node.js 20.9.0+ (Next.js 16 requirement). GitHub Actions uses Node 20.
 
 ## Dependencies
 
-- **next**: ^15.1.4
-- **react**: ^19.0.0
-- **react-dom**: ^19.0.0
+- **next**: ^16.2.7
+- **react**: ^19.2.7
+- **react-dom**: ^19.2.7
 - **tailwindcss**: ^4
 - **typescript**: ^5

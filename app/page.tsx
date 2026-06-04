@@ -1,285 +1,267 @@
 import Image from "next/image";
+import Link from "next/link";
+import { teko, saira } from "./fonts";
+import { ORANGE, BLUE, GRAD, HERO_IMG } from "./brand";
+import { cities, regions } from "./locations/data";
+import SocialIcons from "./components/SocialIcons";
+
+// Live counts derived from the central location data so the stats stay accurate.
+const totalLocations = cities.reduce((sum, c) => sum + c.aos.length, 0);
+const weeklyWorkouts = cities.reduce(
+  (sum, c) => sum + c.aos.reduce((n, ao) => n + ao.schedule.length, 0),
+  0,
+);
+
+const LOGO = "/images/logos/TornadoAlleyLogoWhiteNoWords.png";
+
+const principles = [
+  { name: "Free of Charge", tagline: "Never pay to workout, ever." },
+  { name: "Open to all Men", tagline: "No matter the man, you're welcome." },
+  { name: "Held Outdoors", tagline: "Rain or shine, hot or cold." },
+  { name: "Peer Led", tagline: "Rotating leadership, no clipboards." },
+  { name: "Ends with a COT", tagline: "Always a Circle of Trust." },
+];
+
+const threeFs = [
+  { f: "Fitness", label: "The Magnet", body: "Free, peer-led bootcamps in the gloom. Scalable for every man." },
+  { f: "Fellowship", label: "The Glue", body: "The brotherhood that keeps you coming back before dawn." },
+  { f: "Faith", label: "The Dynamite", body: "A belief in something bigger than yourself." },
+];
+
+// Press features. KFOR is our local Tornado Alley story (featured first);
+// the rest are F3 Nation's national press, linked from f3nation.com.
+const press = [
+  { name: "KFOR", href: "https://kfor.com/news/great-state/the-easiest-gym-to-join-f3-tornado-alley/" },
+  { name: "Men's Health", href: "https://www.menshealth.com/fitness/a25799601/f3-workouts-for-men/" },
+  {
+    name: "Today Show",
+    href: "https://www.today.com/video/how-fitness-fellowship-and-faith-are-bringing-thousands-of-men-together-906361923839",
+  },
+  { name: "New York Times", href: "https://www.nytimes.com/2022/09/24/us/f3-workout-men-texas.html" },
+  {
+    name: "Art of Manliness",
+    href: "https://www.artofmanliness.com/health-fitness/fitness/podcast-324-fitness-fellowship-faith-cure-sad-clown-syndrome/",
+  },
+  { name: "Order of Man", href: "https://www.orderofman.com/frankschwartz/" },
+  { name: "Freed to Lead", href: "https://f3gear.com/products/f3-freed-to-lead-book-2nd-edition" },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Tornado Alley - F3",
+  description:
+    "A free fitness group dedicated to building stronger men through peer-led workouts, leadership development, and community service.",
+  url: "https://tornadoalley.f3nation.com",
+  logo: "https://tornadoalley.f3nation.com/images/logos/f3_tornado_alley_logo_compressed.jpg",
+  image: "https://tornadoalley.f3nation.com/images/logos/f3_tornado_alley_logo_compressed.jpg",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Oklahoma City",
+    addressRegion: "OK",
+    addressCountry: "US",
+  },
+  areaServed: [
+    { "@type": "City", name: "Edmond" },
+    { "@type": "City", name: "Oklahoma City" },
+    { "@type": "City", name: "Norman" },
+    { "@type": "City", name: "Yukon" },
+    { "@type": "City", name: "Mustang" },
+  ],
+  sameAs: [
+    "https://www.facebook.com/f3tornadoalley",
+    "https://www.instagram.com/f3tornadoalley/",
+    "https://x.com/f3tornadoalley",
+    "https://www.tiktok.com/@f3tornadoalley",
+  ],
+  foundingDate: "2016",
+  slogan:
+    "The Mission of F3 is to plant, grow and serve small workout groups for men for the invigoration of male community leadership.",
+  knowsAbout: ["Fitness", "Community Leadership", "Outdoor Workouts", "Peer-Led Training"],
+  memberOf: { "@type": "Organization", name: "F3 Nation", url: "https://f3nation.com" },
+};
 
 export default function Home() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Tornado Alley - F3",
-    description: "A free fitness group dedicated to building stronger men through peer-led workouts, leadership development, and community service.",
-    url: "https://tornadoalley.f3nation.com",
-    logo: "https://tornadoalley.f3nation.com/images/logos/f3_tornado_alley_logo_compressed.jpg",
-    image: "https://tornadoalley.f3nation.com/images/logos/f3_tornado_alley_logo_compressed.jpg",
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Oklahoma City",
-      addressRegion: "OK",
-      addressCountry: "US"
-    },
-    areaServed: [
-      {
-        "@type": "City",
-        name: "Edmond"
-      },
-      {
-        "@type": "City",
-        name: "Oklahoma City"
-      },
-      {
-        "@type": "City",
-        name: "Norman"
-      },
-      {
-        "@type": "City",
-        name: "Yukon"
-      },
-      {
-        "@type": "City",
-        name: "Mustang"
-      }
-    ],
-    sameAs: [
-      "https://www.facebook.com/f3tornadoalley",
-      "https://www.instagram.com/f3tornadoalley/",
-      "https://x.com/f3tornadoalley",
-      "https://www.tiktok.com/@f3tornadoalley",
-    ],
-    foundingDate: "2016",
-    slogan: "The Mission of F3 is to plant, grow and serve small workout groups for men for the invigoration of male community leadership.",
-    knowsAbout: ["Fitness", "Community Leadership", "Outdoor Workouts", "Peer-Led Training"],
-    memberOf: {
-      "@type": "Organization",
-      name: "F3 Nation",
-      url: "https://f3nation.com"
-    }
-  };
-
+  const h = teko.className;
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="relative w-full min-h-[calc(100vh-64px)] bg-white flex flex-col">
-        {/* Hero Image Section - fills available space minus principles section */}
-        <div className="relative w-full flex-1 min-h-[50vh]">
-          <Image
-            src="https://pub-c59a7d8d850842288d7852af88d4ee66.r2.dev/images/2025_12_31_ground_zero.jpg"
-            alt="Tornado Alley Ground Zero"
-            fill
-            className="object-cover"
-            priority
-          />
-          {/* Gradient Overlay for better text readability */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black"></div>
-
-          {/* Content Overlay */}
-          <div className="absolute inset-0 flex flex-col items-center px-6 text-center">
-            {/* Tornado Alley Heading - positioned higher */}
-            <div className="mt-[8vh]">
-              <h1 className="text-4xl font-bold text-white md:text-5xl lg:text-6xl drop-shadow-2xl">
-                Tornado Alley
-              </h1>
-            </div>
-
-            {/* Social Media Links - positioned at bottom with padding */}
-            <div className="absolute bottom-20 sm:bottom-16 md:bottom-20 left-0 right-0 flex flex-wrap items-center justify-center gap-2 px-4 sm:px-6">
-              <a
-                href="https://www.facebook.com/f3tornadoalley"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-1 sm:gap-1.5 rounded-full bg-blue-600 w-[72px] sm:w-28 md:w-32 h-8 sm:h-9 text-white transition-all hover:bg-blue-700 hover:scale-105 shadow-xl backdrop-blur-sm text-xs sm:text-sm"
-                aria-label="Visit our Facebook page"
+      <main className={`${saira.className} bg-[#0A1424] text-white overflow-x-hidden`}>
+        {/* ============ HERO ============ */}
+        <section className="relative min-h-[88vh] flex items-center overflow-hidden">
+          <Image src={HERO_IMG} alt="Tornado Alley workout" fill priority className="object-cover" />
+          <div className="absolute inset-0 bg-linear-to-r from-[#0A1424] via-[#0A1424]/85 to-[#0A1424]/30" />
+          <div className="absolute bottom-0 left-0 right-0 h-3" style={{ background: GRAD }} />
+          <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p className="ta-fade-up italic font-semibold uppercase tracking-[0.25em] text-base mb-4" style={{ color: ORANGE, animationDelay: "0.05s" }}>
+              {"// Oklahoma City Metro"}
+            </p>
+            <h1 className={`${h} ta-fade-up font-black italic uppercase leading-[0.85] text-6xl md:text-8xl lg:text-9xl`} style={{ animationDelay: "0.18s" }}>
+              <span className="block">Fitness.</span>
+              <span className="block bg-clip-text text-transparent" style={{ backgroundImage: GRAD }}>
+                Fellowship.
+              </span>
+              <span className="block">Faith.</span>
+            </h1>
+            <p className="ta-fade-up mt-8 text-xl text-gray-300 max-w-xl uppercase tracking-wide font-semibold" style={{ animationDelay: "0.32s" }}>
+              Free, peer-led outdoor workouts for men. Built before sunrise.
+            </p>
+            <div className="ta-fade-up mt-10 flex flex-wrap gap-5" style={{ animationDelay: "0.46s" }}>
+              <Link
+                href="/locations"
+                className="group -skew-x-6 inline-flex items-center justify-center px-10 py-4 shadow-2xl transition-all duration-200 hover:scale-[1.04] hover:brightness-110 hover:shadow-[0_12px_45px_-8px_rgba(255,90,31,0.55)]"
+                style={{ backgroundColor: ORANGE }}
               >
-                <svg
-                  className="h-3.5 w-3.5 sm:h-4 sm:w-4"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span className="font-medium hidden sm:inline">Facebook</span>
-                <span className="font-medium sm:hidden">FB</span>
-              </a>
-
-              <a
-                href="https://www.instagram.com/f3tornadoalley/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-1 sm:gap-1.5 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 w-[72px] sm:w-28 md:w-32 h-8 sm:h-9 text-white transition-all hover:from-purple-700 hover:to-pink-700 hover:scale-105 shadow-xl backdrop-blur-sm text-xs sm:text-sm"
-                aria-label="Visit our Instagram page"
+                <span className={`${h} skew-x-6 inline-flex items-center gap-2 leading-none font-bold italic uppercase text-2xl tracking-wide`}>
+                  Find a Workout <span className="inline-block transition-transform duration-200 group-hover:translate-x-1.5 relative -top-[0.12em]">→</span>
+                </span>
+              </Link>
+              <Link
+                href="/getting-started"
+                className="group -skew-x-6 inline-flex items-center justify-center px-10 py-4 border-2 border-white/30 bg-white/5 backdrop-blur-sm transition-all duration-200 hover:scale-[1.04] hover:border-white/70 hover:bg-white/15"
               >
-                <svg
-                  className="h-3.5 w-3.5 sm:h-4 sm:w-4"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span className="font-medium hidden sm:inline">Instagram</span>
-                <span className="font-medium sm:hidden">IG</span>
-              </a>
-
-              <a
-                href="https://x.com/f3tornadoalley"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-1 sm:gap-1.5 rounded-full bg-white/10 backdrop-blur-sm w-[72px] sm:w-28 md:w-32 h-8 sm:h-9 text-white transition-all hover:bg-white/20 hover:scale-105 shadow-xl border border-white/20 text-xs sm:text-sm"
-                aria-label="Visit our X (Twitter) page"
-              >
-                <svg
-                  className="h-3.5 w-3.5 sm:h-4 sm:w-4"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                </svg>
-                <span className="font-medium">X</span>
-              </a>
-
-              <a
-                href="https://www.tiktok.com/@f3tornadoalley"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-1 sm:gap-1.5 rounded-full bg-white/10 backdrop-blur-sm w-[72px] sm:w-28 md:w-32 h-8 sm:h-9 text-white transition-all hover:bg-white/20 hover:scale-105 shadow-xl border border-white/20 text-xs sm:text-sm"
-                aria-label="Visit our TikTok page"
-              >
-                <svg
-                  className="h-3.5 w-3.5 sm:h-4 sm:w-4"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
-                </svg>
-                <span className="font-medium hidden sm:inline">TikTok</span>
-                <span className="font-medium sm:hidden">TT</span>
-              </a>
+                <span className={`${h} skew-x-6 inline-flex items-center gap-2 leading-none font-bold italic uppercase text-2xl tracking-wide`}>New to F3</span>
+              </Link>
             </div>
           </div>
+        </section>
 
-          {/* Mission Statement Callout - overlaying bottom of hero */}
-          <div className="absolute bottom-0 left-0 right-0 bg-white py-2 px-4">
-            <div className="max-w-5xl mx-auto text-center">
-              <h2 className="text-base md:text-lg font-semibold text-gray-800 font-(family-name:--font-titillium-web)">
-                The Mission of F3 is to plant, grow and serve small workout groups for men for the invigoration of male community leadership.
-              </h2>
+        {/* ============ MISSION (diagonal band) ============ */}
+        <section className="relative py-24 -mt-1">
+          <div className="absolute inset-0 -skew-y-3 origin-top-left" style={{ background: GRAD }} />
+          <div className="relative max-w-5xl mx-auto px-6 text-center">
+            <p className={`${h} -mb-4 font-black italic uppercase text-3xl md:text-5xl leading-tight text-white drop-shadow`}>
+              Plant. Grow. Serve. Small workout groups for the invigoration of male community leadership.
+            </p>
+          </div>
+        </section>
+
+        {/* ============ THREE Fs ============ */}
+        <section className="py-24 px-6">
+          <div className="max-w-6xl mx-auto">
+            <h2 className={`${h} font-black italic uppercase text-5xl md:text-7xl mb-14 text-center`}>
+              The <span style={{ color: ORANGE }}>Three</span> Fs
+            </h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              {threeFs.map((item, i) => (
+                <div key={item.f} className="relative bg-[#111E33] p-8 border-t-4 -skew-x-3 transition-all duration-200 hover:-translate-y-1.5 hover:bg-[#16243D] hover:shadow-2xl" style={{ borderColor: i === 1 ? ORANGE : BLUE }}>
+                  <div className="skew-x-3">
+                    <p className="italic font-semibold uppercase tracking-[0.2em] text-sm mb-2" style={{ color: ORANGE }}>
+                      {item.label}
+                    </p>
+                    <h3 className={`${h} font-black italic uppercase text-4xl mb-3`}>{item.f}</h3>
+                    <p className="text-gray-400 uppercase text-sm tracking-wide leading-relaxed">{item.body}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
+        </section>
 
-        {/* 5 Core Principles Section */}
-        <div className="bg-white py-6 px-4 flex-shrink-0">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
-              {/* Principle 1: Free of Charge */}
-              <div className="flex flex-col items-center text-center">
-                <div className="mb-2 w-12 h-12 flex items-center justify-center">
-                  <Image
-                    src="/images/principles/Free-of-charge.svg"
-                    alt="Free of Charge"
-                    width={48}
-                    height={48}
-                    unoptimized
-                  />
-                </div>
-                <h3 className="text-sm font-bold mb-0.5 text-gray-800 font-(family-name:--font-titillium-web)">
-                  Free of Charge
-                </h3>
-                <p className="text-xs text-gray-600">
-                  Never pay to workout
+        {/* ============ STATS ============ */}
+        <section className="py-16 px-6 bg-[#070E1A]">
+          <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+            {[
+              { v: String(weeklyWorkouts), l: "Weekly Workouts" },
+              { v: String(totalLocations), l: "Locations" },
+              { v: String(regions.length), l: "Regions" },
+              { v: "100%", l: "Free" },
+            ].map((s, i) => (
+              <div key={s.l} className={`px-2 ${i < 3 ? "md:border-r-2 md:border-white/10" : ""}`}>
+                <p className={`${h} font-black italic text-6xl md:text-7xl bg-clip-text text-transparent`} style={{ backgroundImage: GRAD }}>
+                  {s.v}
                 </p>
+                <p className="uppercase tracking-[0.2em] text-sm text-gray-400 font-semibold mt-1">{s.l}</p>
               </div>
+            ))}
+          </div>
+        </section>
 
-              {/* Principle 2: Open to all Men */}
-              <div className="flex flex-col items-center text-center">
-                <div className="mb-2 w-12 h-12 flex items-center justify-center">
-                  <Image
-                    src="/images/principles/Open-to-all-men.svg"
-                    alt="Open to all Men"
-                    width={48}
-                    height={48}
-                    unoptimized
-                  />
+        {/* ============ 5 PRINCIPLES ============ */}
+        <section className="py-24 px-6">
+          <div className="max-w-5xl mx-auto">
+            <h2 className={`${h} font-black italic uppercase text-5xl md:text-7xl mb-12 text-center`}>5 Core Principles</h2>
+            <div className="space-y-3">
+              {principles.map((p, i) => (
+                <div key={p.name} className="flex items-center gap-6 bg-[#111E33] -skew-x-6 px-6 py-4 transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#16243D] hover:shadow-xl">
+                  <span className={`${h} skew-x-6 font-black italic text-3xl md:text-4xl w-12`} style={{ color: i % 2 ? BLUE : ORANGE }}>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className={`${h} skew-x-6 font-bold italic uppercase text-2xl md:text-3xl flex-1`}>{p.name}</h3>
+                  <p className="skew-x-6 hidden md:block uppercase text-sm tracking-wide text-gray-400 text-right">{p.tagline}</p>
                 </div>
-                <h3 className="text-sm font-bold mb-0.5 text-gray-800 font-(family-name:--font-titillium-web)">
-                  Open to all Men
-                </h3>
-                <p className="text-xs text-gray-600">
-                  All are welcome
-                </p>
-              </div>
-
-              {/* Principle 3: Held Outdoors */}
-              <div className="flex flex-col items-center text-center">
-                <div className="mb-2 w-12 h-12 flex items-center justify-center">
-                  <Image
-                    src="/images/principles/Held-outdoors.svg"
-                    alt="Held Outdoors"
-                    width={48}
-                    height={48}
-                    unoptimized
-                  />
-                </div>
-                <h3 className="text-sm font-bold mb-0.5 text-gray-800 font-(family-name:--font-titillium-web)">
-                  Held Outdoors
-                </h3>
-                <p className="text-xs text-gray-600">
-                  Rain or shine
-                </p>
-              </div>
-
-              {/* Principle 4: Peer Led */}
-              <div className="flex flex-col items-center text-center">
-                <div className="mb-2 w-12 h-12 flex items-center justify-center">
-                  <Image
-                    src="/images/principles/Peer-led.svg"
-                    alt="Peer Led"
-                    width={48}
-                    height={48}
-                    unoptimized
-                  />
-                </div>
-                <h3 className="text-sm font-bold mb-0.5 text-gray-800 font-(family-name:--font-titillium-web)">
-                  Peer Led
-                </h3>
-                <p className="text-xs text-gray-600">
-                  Rotating leadership
-                </p>
-              </div>
-
-              {/* Principle 5: Ends with a COT */}
-              <div className="flex flex-col items-center text-center">
-                <div className="mb-2 w-12 h-12 flex items-center justify-center">
-                  <Image
-                    src="/images/principles/Ends-in-a-COT.svg"
-                    alt="Ends with a COT"
-                    width={48}
-                    height={48}
-                    unoptimized
-                  />
-                </div>
-                <h3 className="text-sm font-bold mb-0.5 text-gray-800 font-(family-name:--font-titillium-web)">
-                  Ends with a COT
-                </h3>
-                <p className="text-xs text-gray-600">
-                  Circle of Trust
-                </p>
-              </div>
+              ))}
             </div>
           </div>
-        </div>
-      </div>
+        </section>
+
+        {/* ============ PRESS ============ */}
+        <section className="py-14 px-6 bg-[#070E1A]">
+          <div className="max-w-5xl mx-auto text-center">
+            <p className="italic uppercase tracking-[0.3em] text-sm text-gray-500 mb-6">{"// As Featured In"}</p>
+            <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3 font-bold italic uppercase text-xl md:text-2xl">
+              {press.map((p) => (
+                <a
+                  key={p.name}
+                  href={p.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block text-gray-500 transition-all duration-200 hover:scale-105 hover:text-white hover:underline underline-offset-8 decoration-2"
+                >
+                  {p.name}
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ============ LOCATIONS CTA (diagonal) ============ */}
+        <section className="relative py-28 px-6 overflow-hidden bg-[#0A1424]">
+          {/* "Left bleed" mascot — anchored left, oversized, bleeding off the edge */}
+          <div className="absolute -top-20 -bottom-20 -left-28 w-[80%]">
+            <Image src={LOGO} alt="" fill className="object-contain object-left opacity-70" />
+          </div>
+          <div className="absolute inset-0 bg-linear-to-l from-[#0A1424] via-[#0A1424]/80 to-transparent" />
+          <div className="absolute -bottom-2 left-0 right-0 h-6 -skew-y-2" style={{ background: GRAD }} />
+          <div className="relative z-10 max-w-7xl mx-auto">
+            <div className="max-w-xl ml-auto text-center md:text-right">
+            <h2 className={`${h} font-black italic uppercase text-5xl md:text-7xl leading-none mb-6`}>
+              Join Us In<br /><span style={{ color: ORANGE }}>The Gloom</span>
+            </h2>
+            <p className="uppercase tracking-wide text-gray-300 mb-8 font-semibold">
+              All workouts free &amp; open to all men. No forms. Just show up.
+            </p>
+            <Link
+              href="/locations"
+              className="group -skew-x-6 inline-flex items-center justify-center px-12 py-5 shadow-2xl transition-all duration-200 hover:scale-[1.04] hover:brightness-110 hover:shadow-[0_12px_45px_-8px_rgba(0,122,206,0.55)]"
+              style={{ background: GRAD }}
+            >
+              <span className={`${h} skew-x-6 inline-flex items-center gap-2 leading-none font-black italic uppercase text-2xl tracking-wide`}>
+                Find a Workout <span className="inline-block transition-transform duration-200 group-hover:translate-x-1.5 relative -top-[0.12em]">→</span>
+              </span>
+            </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ============ MOTTO + FOOTER ============ */}
+        <section className="py-20 px-6 text-center">
+          <p className={`${h} font-black italic uppercase text-3xl md:text-5xl max-w-3xl mx-auto leading-tight`}>
+            Leave no man behind, but leave no man{" "}
+            <span className="bg-clip-text text-transparent" style={{ backgroundImage: GRAD }}>where you find him.</span>
+          </p>
+        </section>
+
+        <footer className="border-t border-white/10 py-8 px-6 bg-[#070E1A]">
+          <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 uppercase tracking-[0.2em] text-xs text-gray-500 font-semibold italic">
+            <span>F3 Tornado Alley · OKC Metro</span>
+            <SocialIcons />
+          </div>
+        </footer>
+      </main>
     </>
   );
 }
