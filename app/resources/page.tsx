@@ -8,10 +8,12 @@ export const metadata: Metadata = {
   description:
     "Access F3 Nation resources including the Lexicon (terminology), Exicon (exercise library), and Q Source (leadership guides) for Tornado Alley workouts.",
   keywords: ["F3 resources", "F3 lexicon", "F3 exicon", "Q Source", "F3 terminology", "workout exercises"],
+  alternates: { canonical: "/resources/" },
   openGraph: {
     title: "F3 Resources | Tornado Alley",
     description: "Access F3 Nation resources, terminology, exercises, and leadership guides.",
-    url: "https://tornadoalley.f3nation.com/resources",
+    url: "https://tornadoalley.f3nation.com/resources/",
+    images: ["/images/og-image.png"],
   },
 };
 

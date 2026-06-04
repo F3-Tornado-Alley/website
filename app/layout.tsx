@@ -20,6 +20,8 @@ const titilliumWeb = Titillium_Web({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://tornadoalley.f3nation.com"),
+  alternates: { canonical: "/" },
   title: "Tornado Alley - F3 Fitness Community",
   description: "Welcome to Tornado Alley, a free fitness group dedicated to building stronger men through peer-led workouts, leadership development, and community service.",
   keywords: ["F3", "Tornado Alley", "fitness", "workout", "community", "mens fitness", "free fitness group", "outdoor workout"],
@@ -35,10 +37,10 @@ export const metadata: Metadata = {
     siteName: "Tornado Alley",
     images: [
       {
-        url: "/images/logos/f3_tornado_alley_logo_compressed.jpg",
+        url: "/images/og-image.png",
         width: 1200,
-        height: 1200,
-        alt: "Tornado Alley F3 Logo",
+        height: 630,
+        alt: "F3 Tornado Alley",
       },
     ],
   },
@@ -46,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Tornado Alley - F3 Fitness Community",
     description: "Welcome to Tornado Alley, a free fitness group dedicated to building stronger men through peer-led workouts, leadership development, and community service.",
-    images: ["/images/logos/f3_tornado_alley_logo_compressed.jpg"],
+    images: ["/images/og-image.png"],
     creator: "@f3tornadoalley",
   },
   robots: {

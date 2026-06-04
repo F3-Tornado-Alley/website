@@ -13,10 +13,12 @@ export const metadata: Metadata = {
   description:
     "Get in touch with F3 Tornado Alley. Reach out via email or connect with us on social media for questions about workouts, locations, and getting started.",
   keywords: ["F3 Tornado Alley contact", "F3 Oklahoma contact", "F3 workout questions", "F3 Tornado Alley email"],
+  alternates: { canonical: "/contact-us/" },
   openGraph: {
     title: "Contact Us | Tornado Alley F3",
     description: "Get in touch with F3 Tornado Alley via email or social media.",
-    url: "https://tornadoalley.f3nation.com/contact-us",
+    url: "https://tornadoalley.f3nation.com/contact-us/",
+    images: ["/images/og-image.png"],
   },
 };
 

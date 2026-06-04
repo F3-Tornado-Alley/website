@@ -22,7 +22,8 @@ export async function generateMetadata({
   return {
     title,
     description,
-    openGraph: { title, description, url: `https://tornadoalley.f3nation.com/locations/${data.slug}` },
+    alternates: { canonical: `/locations/${data.slug}/` },
+    openGraph: { title, description, url: `https://tornadoalley.f3nation.com/locations/${data.slug}/`, images: ["/images/og-image.png"] },
   };
 }
 
