@@ -239,3 +239,7 @@ export const getCity = (slug: string): City | undefined =>
 
 export const googleMapsDir = (w: Workout): string =>
   `https://www.google.com/maps/dir/?api=1&destination=${w.latitude},${w.longitude}`;
+
+// Stable anchor id for an AO, shared by the ticker links and the city-page cards.
+export const aoSlug = (name: string): string =>
+  name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { teko, saira } from "./fonts";
 import { ORANGE, BLUE, GRAD, HERO_IMG } from "./brand";
 import { cities, regions } from "./locations/data";
+import SocialIcons from "./components/SocialIcons";
 
 // Live counts derived from the central location data so the stats stay accurate.
 const totalLocations = cities.reduce((sum, c) => sum + c.aos.length, 0);
@@ -257,12 +258,7 @@ export default function Home() {
         <footer className="border-t border-white/10 py-8 px-6 bg-[#070E1A]">
           <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 uppercase tracking-[0.2em] text-xs text-gray-500 font-semibold italic">
             <span>F3 Tornado Alley · OKC Metro</span>
-            <div className="flex gap-6">
-              <a href="https://www.facebook.com/f3tornadoalley" target="_blank" rel="noopener noreferrer" className="hover:text-white">Facebook</a>
-              <a href="https://www.instagram.com/f3tornadoalley/" target="_blank" rel="noopener noreferrer" className="hover:text-white">Instagram</a>
-              <a href="https://x.com/f3tornadoalley" target="_blank" rel="noopener noreferrer" className="hover:text-white">X</a>
-              <a href="https://www.tiktok.com/@f3tornadoalley" target="_blank" rel="noopener noreferrer" className="hover:text-white">TikTok</a>
-            </div>
+            <SocialIcons />
           </div>
         </footer>
       </main>

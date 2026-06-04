@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { cities, getCity, googleMapsDir, type Workout } from "../data";
+import { cities, getCity, googleMapsDir, aoSlug, type Workout } from "../data";
 import { teko, saira } from "../../fonts";
 import { ORANGE, BLUE } from "../../brand";
 import PageHero from "../../components/PageHero";
@@ -59,7 +59,8 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
           {data.aos.map((ao, i) => (
             <div
               key={ao.name}
-              className="flex flex-col bg-[#111E33] border-t-4 p-6 transition-all duration-200 hover:-translate-y-1.5 hover:bg-[#16243D] hover:shadow-2xl"
+              id={aoSlug(ao.name)}
+              className="flex flex-col bg-[#111E33] border-t-4 p-6 scroll-mt-28 transition-all duration-200 hover:-translate-y-1.5 hover:bg-[#16243D] hover:shadow-2xl target:ring-2 target:ring-[#FF5A1F]"
               style={{ borderColor: i % 2 ? BLUE : ORANGE }}
             >
               <h2 className={`${teko.className} font-black italic uppercase text-3xl mb-4`}>{ao.name}</h2>

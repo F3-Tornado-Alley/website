@@ -5,6 +5,16 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState, useSyncExternalStore } from 'react';
 import { oswald } from '../fonts';
+import { aoSlug } from '../locations/data';
+
+// Ticker city label -> city page slug.
+const CITY_SLUG: Record<string, string> = {
+  Edmond: 'edmond',
+  Yukon: 'yukon',
+  OKC: 'okc',
+  Mustang: 'mustang',
+  Norman: 'norman',
+};
 
 // OKC Thunder palette
 const NAVY = '#002D62';
@@ -74,9 +84,11 @@ export default function Navigation() {
       {week.map((g, i) => {
         const isToday = g.day === today;
         return (
-          <div
+          <Link
             key={`${copy}-${i}`}
-            className="flex items-center gap-2.5 px-4 py-2 whitespace-nowrap border-l border-white/10"
+            href={`/locations/${CITY_SLUG[g.city]}#${aoSlug(g.ao)}`}
+            tabIndex={copy === 1 ? -1 : undefined}
+            className="flex items-center gap-2.5 px-4 py-2 whitespace-nowrap border-l border-white/10 transition-colors hover:bg-white/10"
           >
             <span className="flex items-center gap-1 font-bold text-xs" style={{ color: isToday ? SUNSET : 'rgba(255,255,255,0.5)' }}>
               {isToday && <span className="inline-block w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: SUNSET }} />}
@@ -85,7 +97,7 @@ export default function Navigation() {
             <span className="font-bold text-xs" style={{ color: '#5BB4E8' }}>{g.time}</span>
             <span className="font-semibold text-xs uppercase">{g.ao}</span>
             <span className="text-[10px] text-white/40 uppercase">{g.city}</span>
-          </div>
+          </Link>
         );
       })}
     </div>
