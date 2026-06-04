@@ -2,6 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { teko, saira } from "./fonts";
 import { ORANGE, BLUE, GRAD, HERO_IMG } from "./brand";
+import { cities, regions } from "./locations/data";
+
+// Live counts derived from the central location data so the stats stay accurate.
+const totalLocations = cities.reduce((sum, c) => sum + c.aos.length, 0);
+const weeklyWorkouts = cities.reduce(
+  (sum, c) => sum + c.aos.reduce((n, ao) => n + ao.schedule.length, 0),
+  0,
+);
+
+const LOGO = "/images/logos/TornadoAlleyLogoWhiteNoWords.png";
 
 const principles = [
   { name: "Free of Charge", tagline: "Never pay to workout, ever." },
@@ -80,11 +90,11 @@ export default function Home() {
       />
       <main className={`${saira.className} bg-[#0A1424] text-white overflow-x-hidden`}>
         {/* ============ HERO ============ */}
-        <section className="relative min-h-[82vh] flex items-center">
+        <section className="relative min-h-[82vh] flex items-center overflow-hidden">
           <Image src={HERO_IMG} alt="Tornado Alley workout" fill priority className="object-cover" />
           <div className="absolute inset-0 bg-linear-to-r from-[#0A1424] via-[#0A1424]/85 to-[#0A1424]/30" />
           <div className="absolute bottom-0 left-0 right-0 h-3" style={{ background: GRAD }} />
-          <div className="relative z-10 px-6 lg:px-16 max-w-5xl">
+          <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <p className="ta-fade-up italic font-semibold uppercase tracking-[0.25em] text-base mb-4" style={{ color: ORANGE, animationDelay: "0.05s" }}>
               {"// Oklahoma City Metro"}
             </p>
@@ -154,9 +164,9 @@ export default function Home() {
         <section className="py-16 px-6 bg-[#070E1A]">
           <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             {[
-              { v: "15+", l: "Weekly Workouts" },
-              { v: "8", l: "Locations" },
-              { v: "2", l: "Regions" },
+              { v: String(weeklyWorkouts), l: "Weekly Workouts" },
+              { v: String(totalLocations), l: "Locations" },
+              { v: String(regions.length), l: "Regions" },
               { v: "100%", l: "Free" },
             ].map((s, i) => (
               <div key={s.l} className={`px-2 ${i < 3 ? "md:border-r-2 md:border-white/10" : ""}`}>
@@ -208,11 +218,15 @@ export default function Home() {
         </section>
 
         {/* ============ LOCATIONS CTA (diagonal) ============ */}
-        <section className="relative py-28 px-6 overflow-hidden">
-          <Image src={HERO_IMG} alt="" fill className="object-cover" />
-          <div className="absolute inset-0 bg-[#0A1424]/80" />
+        <section className="relative py-28 px-6 overflow-hidden bg-[#0A1424]">
+          {/* "Left bleed" mascot — anchored left, oversized, bleeding off the edge */}
+          <div className="absolute -top-20 -bottom-20 -left-28 w-[80%]">
+            <Image src={LOGO} alt="" fill className="object-contain object-left opacity-70" />
+          </div>
+          <div className="absolute inset-0 bg-linear-to-l from-[#0A1424] via-[#0A1424]/80 to-transparent" />
           <div className="absolute -bottom-2 left-0 right-0 h-6 -skew-y-2" style={{ background: GRAD }} />
-          <div className="relative z-10 max-w-3xl mx-auto text-center">
+          <div className="relative z-10 max-w-7xl mx-auto">
+            <div className="max-w-xl ml-auto text-center md:text-right">
             <h2 className={`${h} font-black italic uppercase text-5xl md:text-7xl leading-none mb-6`}>
               Join Us In<br /><span style={{ color: ORANGE }}>The Gloom</span>
             </h2>
@@ -228,6 +242,7 @@ export default function Home() {
                 Find a Workout <span className="inline-block transition-transform duration-200 group-hover:translate-x-1.5">→</span>
               </span>
             </Link>
+            </div>
           </div>
         </section>
 

@@ -107,11 +107,11 @@ export default function Navigation() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 text-white">
             <Image
-              src="/images/logos/f3_tornado_alley_logo_compressed.jpg"
+              src="/images/logos/TornadoAlleyLogoWhiteNoWords.png"
               alt="Tornado Alley Logo"
-              width={34}
-              height={34}
-              className="rounded"
+              width={38}
+              height={38}
+              className="object-contain"
             />
             <span className="font-bold text-lg uppercase tracking-wide">Tornado Alley</span>
           </Link>
