@@ -87,6 +87,26 @@ export const cities: City[] = [
         longitude: -97.456338,
         mapUrl: "https://map.f3nation.com/?lat=35.645888&lon=-97.456338&zoom=15",
       },
+      {
+        name: "Forged",
+        address: "4600 E 2nd St, Edmond, OK 73034",
+        schedule: [
+          { day: "Monday", time: "0530-0615", type: "Bootcamp" },
+          { day: "Wednesday", time: "0530-0615", type: "Bootcamp" },
+          { day: "Friday", time: "0530-0615", type: "Bootcamp" },
+        ],
+        latitude: 35.6495231,
+        longitude: -97.4214131,
+        mapUrl: "https://map.f3nation.com/?lat=35.6495231&lon=-97.4214131&zoom=15",
+      },
+      {
+        name: "The Ubermensch",
+        address: "4509 Integris Parkway, Edmond, OK 73034",
+        schedule: [{ day: "Sunday", time: "0500-0600", type: "Ruck" }],
+        latitude: 35.6414678,
+        longitude: -97.4171553,
+        mapUrl: "https://map.f3nation.com/?lat=35.6414678&lon=-97.4171553&zoom=15",
+      },
     ],
   },
   {
