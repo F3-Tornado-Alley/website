@@ -53,11 +53,12 @@ const week = [
 
 const DAY_ABBR = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 
-const navItems = [
+const navItems: { name: string; path: string; external?: boolean }[] = [
   { name: 'Home', path: '/' },
   { name: 'Locations', path: '/locations' },
   { name: 'Getting Started', path: '/getting-started' },
   { name: 'Resources', path: '/resources' },
+  { name: 'Gear', path: 'https://f3gear.com', external: true },
   { name: 'Contact', path: '/contact-us' },
 ];
 
@@ -130,26 +131,29 @@ export default function Navigation() {
 
           {/* Desktop links */}
           <div className="hidden lg:flex items-center gap-7 text-sm font-medium tracking-wide">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                href={item.path}
-                className={`relative uppercase pb-1 transition-colors hover:text-[#FDBB30] after:absolute after:left-0 after:bottom-0 after:h-0.5 after:bg-[#FDBB30] after:transition-all after:duration-200 ${
-                  isActive(item.path)
-                    ? 'text-white after:w-full'
-                    : 'text-white/75 after:w-0 hover:after:w-full'
-                }`}
-              >
-                {item.name}
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const cls = `relative uppercase pb-1 transition-colors hover:text-[#FDBB30] after:absolute after:left-0 after:bottom-0 after:h-0.5 after:bg-[#FDBB30] after:transition-all after:duration-200 ${
+                isActive(item.path)
+                  ? 'text-white after:w-full'
+                  : 'text-white/75 after:w-0 hover:after:w-full'
+              }`;
+              return item.external ? (
+                <a key={item.path} href={item.path} target="_blank" rel="noopener noreferrer" className={cls}>
+                  {item.name}
+                </a>
+              ) : (
+                <Link key={item.path} href={item.path} className={cls}>
+                  {item.name}
+                </Link>
+              );
+            })}
           </div>
 
           {/* CTA + mobile toggle */}
           <div className="flex items-center gap-3">
             <Link
               href="/locations"
-              className="hidden sm:inline-block font-bold text-sm uppercase tracking-wide px-5 py-2 text-white transition-all duration-200 hover:scale-105 hover:brightness-110 hover:shadow-lg"
+              className="hidden sm:inline-flex items-center justify-center leading-none font-bold text-sm uppercase tracking-wide px-5 py-2 text-white transition-all duration-200 hover:scale-105 hover:brightness-110 hover:shadow-lg"
               style={{ backgroundColor: SUNSET }}
             >
               Find a Workout
@@ -176,25 +180,39 @@ export default function Navigation() {
         {mobileMenuOpen && (
           <div className="lg:hidden border-t border-white/10" style={{ backgroundColor: NAVY }}>
             <div className="px-4 py-3 space-y-1">
-              {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  href={item.path}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block px-3 py-2 uppercase text-base font-medium tracking-wide"
-                  style={
-                    isActive(item.path)
-                      ? { color: '#fff', borderLeft: `4px solid ${YELLOW}` }
-                      : { color: 'rgba(255,255,255,0.75)' }
-                  }
-                >
-                  {item.name}
-                </Link>
-              ))}
+              {navItems.map((item) => {
+                const cls = "block px-3 py-2 uppercase text-base font-medium tracking-wide";
+                const style = isActive(item.path)
+                  ? { color: '#fff', borderLeft: `4px solid ${YELLOW}` }
+                  : { color: 'rgba(255,255,255,0.75)' };
+                return item.external ? (
+                  <a
+                    key={item.path}
+                    href={item.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={cls}
+                    style={style}
+                  >
+                    {item.name}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.path}
+                    href={item.path}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={cls}
+                    style={style}
+                  >
+                    {item.name}
+                  </Link>
+                );
+              })}
               <Link
                 href="/locations"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block mt-2 text-center font-bold uppercase tracking-wide px-5 py-3 text-white transition-all duration-200 hover:brightness-110"
+                className="flex mt-2 items-center justify-center leading-none font-bold uppercase tracking-wide px-5 py-3 text-white transition-all duration-200 hover:brightness-110"
                 style={{ backgroundColor: SUNSET }}
               >
                 Find a Workout

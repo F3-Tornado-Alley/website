@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { teko, saira } from "../fonts";
 import { ORANGE, BLUE } from "../brand";
 import PageHero from "../components/PageHero";
@@ -56,6 +57,25 @@ export default function ResourcesPage() {
             </a>
           ))}
         </div>
+
+        {/* Featured: VQ / Q101 (our own page) */}
+        <Link
+          href="/resources/vq"
+          className="group block bg-[#111E33] border-t-4 p-7 mt-6 transition-all duration-200 hover:-translate-y-1 hover:bg-[#16243D] hover:shadow-2xl"
+          style={{ borderColor: ORANGE }}
+        >
+          <div className="flex items-center justify-between gap-6">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-1" style={{ color: ORANGE }}>Ready to Lead?</p>
+              <h2 className={`${teko.className} font-black italic uppercase text-3xl mb-2`}>VQ — Q101</h2>
+              <p className="text-gray-400 max-w-2xl">
+                Leading your first workout? The planning protocol, command voice, and a simple Beatdown
+                template to step up with confidence.
+              </p>
+            </div>
+            <span className={`${teko.className} font-black italic text-4xl shrink-0 transition-transform duration-200 group-hover:translate-x-1.5`} style={{ color: ORANGE }}>→</span>
+          </div>
+        </Link>
       </div>
     </main>
   );

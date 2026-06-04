@@ -12,6 +12,7 @@ const STATIC: [string, MetadataRoute.Sitemap[number]["changeFrequency"], number]
   ["/locations/", "weekly", 0.9],
   ["/getting-started/", "monthly", 0.9],
   ["/resources/", "monthly", 0.7],
+  ["/resources/vq/", "monthly", 0.6],
   ["/contact-us/", "monthly", 0.6],
 ];
 
