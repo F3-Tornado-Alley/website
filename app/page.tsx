@@ -91,7 +91,7 @@ export default function Home() {
       />
       <main className={`${saira.className} bg-[#0A1424] text-white overflow-x-hidden`}>
         {/* ============ HERO ============ */}
-        <section className="relative min-h-[82vh] flex items-center overflow-hidden">
+        <section className="relative min-h-[88vh] flex items-center overflow-hidden">
           <Image src={HERO_IMG} alt="Tornado Alley workout" fill priority className="object-cover" />
           <div className="absolute inset-0 bg-linear-to-r from-[#0A1424] via-[#0A1424]/85 to-[#0A1424]/30" />
           <div className="absolute bottom-0 left-0 right-0 h-3" style={{ background: GRAD }} />
@@ -112,18 +112,18 @@ export default function Home() {
             <div className="ta-fade-up mt-10 flex flex-wrap gap-5" style={{ animationDelay: "0.46s" }}>
               <Link
                 href="/locations"
-                className="group -skew-x-12 inline-block px-10 py-4 shadow-2xl transition-all duration-200 hover:scale-[1.04] hover:brightness-110 hover:shadow-[0_12px_45px_-8px_rgba(255,90,31,0.55)]"
+                className="group -skew-x-6 inline-flex items-center justify-center px-10 py-4 shadow-2xl transition-all duration-200 hover:scale-[1.04] hover:brightness-110 hover:shadow-[0_12px_45px_-8px_rgba(255,90,31,0.55)]"
                 style={{ backgroundColor: ORANGE }}
               >
-                <span className={`${h} skew-x-12 inline-block font-bold italic uppercase text-2xl tracking-wide`}>
-                  Find a Workout <span className="inline-block transition-transform duration-200 group-hover:translate-x-1.5">→</span>
+                <span className={`${h} skew-x-6 inline-flex items-center gap-2 leading-none font-bold italic uppercase text-2xl tracking-wide`}>
+                  Find a Workout <span className="inline-block transition-transform duration-200 group-hover:translate-x-1.5 relative -top-[0.12em]">→</span>
                 </span>
               </Link>
               <Link
                 href="/getting-started"
-                className="group -skew-x-12 inline-block px-10 py-4 border-2 border-white/30 bg-white/5 backdrop-blur-sm transition-all duration-200 hover:scale-[1.04] hover:border-white/70 hover:bg-white/15"
+                className="group -skew-x-6 inline-flex items-center justify-center px-10 py-4 border-2 border-white/30 bg-white/5 backdrop-blur-sm transition-all duration-200 hover:scale-[1.04] hover:border-white/70 hover:bg-white/15"
               >
-                <span className={`${h} skew-x-12 inline-block font-bold italic uppercase text-2xl tracking-wide`}>New to F3</span>
+                <span className={`${h} skew-x-6 inline-flex items-center gap-2 leading-none font-bold italic uppercase text-2xl tracking-wide`}>New to F3</span>
               </Link>
             </div>
           </div>
@@ -236,11 +236,11 @@ export default function Home() {
             </p>
             <Link
               href="/locations"
-              className="group -skew-x-12 inline-block px-12 py-5 shadow-2xl transition-all duration-200 hover:scale-[1.04] hover:brightness-110 hover:shadow-[0_12px_45px_-8px_rgba(0,122,206,0.55)]"
+              className="group -skew-x-6 inline-flex items-center justify-center px-12 py-5 shadow-2xl transition-all duration-200 hover:scale-[1.04] hover:brightness-110 hover:shadow-[0_12px_45px_-8px_rgba(0,122,206,0.55)]"
               style={{ background: GRAD }}
             >
-              <span className={`${h} skew-x-12 inline-block font-black italic uppercase text-2xl tracking-wide`}>
-                Find a Workout <span className="inline-block transition-transform duration-200 group-hover:translate-x-1.5">→</span>
+              <span className={`${h} skew-x-6 inline-flex items-center gap-2 leading-none font-black italic uppercase text-2xl tracking-wide`}>
+                Find a Workout <span className="inline-block transition-transform duration-200 group-hover:translate-x-1.5 relative -top-[0.12em]">→</span>
               </span>
             </Link>
             </div>

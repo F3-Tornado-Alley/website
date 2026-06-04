@@ -94,7 +94,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
                   href={googleMapsDir(ao)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${teko.className} w-full text-center font-bold italic uppercase tracking-wide px-4 py-2.5 text-white transition-all duration-200 hover:brightness-110 hover:scale-[1.02]`}
+                  className={`${teko.className} w-full flex items-center justify-center leading-none font-bold italic uppercase tracking-wide px-4 py-2.5 text-white transition-all duration-200 hover:brightness-110 hover:scale-[1.02]`}
                   style={{ backgroundColor: ORANGE }}
                 >
                   Get Directions →
@@ -103,7 +103,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
                   href={ao.mapUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${teko.className} w-full text-center font-bold italic uppercase tracking-wide px-4 py-2.5 text-white border-2 border-white/20 transition-all duration-200 hover:border-white/60 hover:bg-white/5`}
+                  className={`${teko.className} w-full flex items-center justify-center leading-none font-bold italic uppercase tracking-wide px-4 py-2.5 text-white border-2 border-white/20 transition-all duration-200 hover:border-white/60 hover:bg-white/5`}
                 >
                   View on F3 Map
                 </a>

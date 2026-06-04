@@ -73,11 +73,11 @@ export default function GettingStartedPage() {
         <div className="mt-10 text-center">
           <Link
             href="/locations"
-            className="group -skew-x-12 inline-block px-12 py-5 shadow-2xl transition-all duration-200 hover:scale-[1.04] hover:brightness-110 hover:shadow-[0_12px_45px_-8px_rgba(255,90,31,0.55)]"
+            className="group -skew-x-6 inline-flex items-center justify-center px-12 py-5 shadow-2xl transition-all duration-200 hover:scale-[1.04] hover:brightness-110 hover:shadow-[0_12px_45px_-8px_rgba(255,90,31,0.55)]"
             style={{ backgroundColor: ORANGE }}
           >
-            <span className={`${teko.className} skew-x-12 inline-block font-black italic uppercase text-2xl tracking-wide`}>
-              Find a Workout <span className="inline-block transition-transform duration-200 group-hover:translate-x-1.5">→</span>
+            <span className={`${teko.className} skew-x-6 inline-flex items-center gap-2 leading-none font-black italic uppercase text-2xl tracking-wide`}>
+              Find a Workout <span className="inline-block transition-transform duration-200 group-hover:translate-x-1.5 relative -top-[0.12em]">→</span>
             </span>
           </Link>
         </div>

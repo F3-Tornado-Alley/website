@@ -69,7 +69,7 @@ export default function LocationsPage() {
                     href={region.statsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`${teko.className} flex-1 text-center font-bold italic uppercase tracking-wide px-3 py-2 text-sm text-white transition-all duration-200 hover:brightness-110`}
+                    className={`${teko.className} flex-1 flex items-center justify-center leading-none font-bold italic uppercase tracking-wide px-3 py-2 text-sm text-white transition-all duration-200 hover:brightness-110`}
                     style={{ backgroundColor: ORANGE }}
                   >
                     Stats ↗
@@ -79,12 +79,12 @@ export default function LocationsPage() {
                       href={region.regionInfoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`${teko.className} flex-1 text-center font-bold italic uppercase tracking-wide px-3 py-2 text-sm text-white border-2 border-white/20 transition-all duration-200 hover:border-white/60 hover:bg-white/5`}
+                      className={`${teko.className} flex-1 flex items-center justify-center leading-none font-bold italic uppercase tracking-wide px-3 py-2 text-sm text-white border-2 border-white/20 transition-all duration-200 hover:border-white/60 hover:bg-white/5`}
                     >
                       Info ↗
                     </a>
                   ) : (
-                    <span className={`${teko.className} flex-1 text-center font-bold italic uppercase tracking-wide px-3 py-2 text-sm text-white/30 border-2 border-white/10`}>
+                    <span className={`${teko.className} flex-1 flex items-center justify-center leading-none font-bold italic uppercase tracking-wide px-3 py-2 text-sm text-white/30 border-2 border-white/10`}>
                       Info Soon
                     </span>
                   )}
