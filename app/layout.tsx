@@ -83,6 +83,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Speed up the cross-origin LCP hero image (hosted on Cloudflare R2) */}
+        <link rel="preconnect" href="https://pub-c59a7d8d850842288d7852af88d4ee66.r2.dev" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://pub-c59a7d8d850842288d7852af88d4ee66.r2.dev" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${titilliumWeb.variable} antialiased`}
       >
