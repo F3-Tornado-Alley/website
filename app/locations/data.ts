@@ -109,104 +109,6 @@ export const cities: City[] = [
       },
     ],
   },
-  {
-    slug: "mustang",
-    name: "Mustang",
-    region: "Boomtown",
-    aos: [
-      {
-        name: "The Corral",
-        address: "Mustang, OK",
-        schedule: [
-          { day: "Wednesday", time: "0530-0615", type: "Bootcamp" },
-          { day: "Saturday", time: "0600-0645", type: "Bootcamp" },
-        ],
-        latitude: 35.4045401542569,
-        longitude: -97.72736293195,
-        mapUrl: "https://map.f3nation.com/?lat=35.4045401542569&lon=-97.72736293195&zoom=15",
-      },
-    ],
-  },
-  {
-    slug: "norman",
-    name: "Norman",
-    region: "Boomtown",
-    aos: [
-      {
-        name: "Later Rather Than Sooner",
-        address: "2501 Jenkins Ave, Norman, OK 73072",
-        schedule: [{ day: "Saturday", time: "0600-0645", type: "Bootcamp" }],
-        notes: "Meet in the parking lot south of the softball complex",
-        latitude: 35.1948247,
-        longitude: -97.4381404,
-        mapUrl: "https://map.f3nation.com/?lat=35.1948247&lon=-97.4381404&zoom=15",
-      },
-    ],
-  },
-  {
-    slug: "okc",
-    name: "Oklahoma City",
-    region: "Boomtown",
-    aos: [
-      {
-        name: "Corporate",
-        address: "The Village, Oklahoma City, OK",
-        schedule: [{ day: "Saturday", time: "0600-0645", type: "Bootcamp" }],
-        latitude: 35.534510509697,
-        longitude: -97.5291069335429,
-        mapUrl: "https://map.f3nation.com/?lat=35.534510509697&lon=-97.5291069335429&zoom=15",
-      },
-      {
-        name: "The Bunker",
-        address: "1212 Bedford Dr, Oklahoma City, OK 73116",
-        schedule: [{ day: "Monday", time: "0530-0615", type: "Run/Ruck" }],
-        notes: "Meet in the parking lot of Nichols Hills United Methodist Church",
-        latitude: 35.54112,
-        longitude: -97.53478,
-        mapUrl: "https://map.f3nation.com/?lat=35.54112&lon=-97.53478&zoom=15",
-      },
-      {
-        name: "Ol' Glory",
-        address: "3701 S Lake Hefner Dr, Oklahoma City, OK 73120",
-        schedule: [
-          { day: "Tuesday", time: "0530-0615", type: "Bootcamp" },
-          { day: "Thursday", time: "0530-0615", type: "Bootcamp" },
-        ],
-        notes: "Stars and Stripes Park - one of the best views in OKC!",
-        latitude: 35.551505,
-        longitude: -97.581957,
-        mapUrl: "https://map.f3nation.com/?lat=35.551505&lon=-97.581957&zoom=15",
-      },
-      {
-        name: "The Swamp",
-        address: "415 S Robinson Ave, Oklahoma City, OK 73109",
-        schedule: [
-          { day: "Wednesday", time: "0530-0615", type: "Bootcamp" },
-          { day: "Friday", time: "0530-0615", type: "Bootcamp" },
-        ],
-        notes:
-          "Scissortail Park - meet at the stage on the north side near OKC Boulevard and Robinson, directly west of the Omni Hotel",
-        latitude: 35.4613046,
-        longitude: -97.5171868,
-        mapUrl: "https://map.f3nation.com/?lat=35.4613046&lon=-97.5171868&zoom=15",
-      },
-    ],
-  },
-  {
-    slug: "yukon",
-    name: "Yukon",
-    region: "Boomtown",
-    aos: [
-      {
-        name: "Mill Hill",
-        address: "500 W Vandament Ave, Yukon, OK 73099",
-        schedule: [{ day: "Monday", time: "0515-0600", type: "Bootcamp" }],
-        latitude: 35.5067,
-        longitude: -97.7628,
-        mapUrl: "https://map.f3nation.com/?lat=35.5067&lon=-97.7628&zoom=15",
-      },
-    ],
-  },
 ];
 
 export interface Region {
@@ -220,17 +122,10 @@ export interface Region {
 export const regions: Region[] = [
   {
     name: "Tornado Alley",
-    description: "Edmond area workout locations",
+    description: "Edmond, Oklahoma workout locations",
     statsUrl: "https://pax-vault.f3nation.com/stats/region/35003",
     regionInfoUrl: "https://regions.f3nation.com/tornado-alley",
     citySlugs: ["edmond"],
-  },
-  {
-    name: "Boomtown",
-    description: "Mustang, Norman, OKC, and Yukon area workout locations",
-    statsUrl: "https://pax-vault.f3nation.com/stats/region/50857",
-    regionInfoUrl: null,
-    citySlugs: ["mustang", "norman", "okc", "yukon"],
   },
 ];
 

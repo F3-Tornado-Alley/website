@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { teko, saira } from "./fonts";
 import { ORANGE, BLUE, GRAD, HERO_IMG } from "./brand";
-import { cities, regions } from "./locations/data";
+import { cities } from "./locations/data";
 import SocialIcons from "./components/SocialIcons";
 
 // Live counts derived from the central location data so the stats stay accurate.
@@ -11,6 +11,9 @@ const weeklyWorkouts = cities.reduce(
   (sum, c) => sum + c.aos.reduce((n, ao) => n + ao.schedule.length, 0),
   0,
 );
+const daysCovered = new Set(
+  cities.flatMap((c) => c.aos.flatMap((ao) => ao.schedule.map((s) => s.day))),
+).size;
 
 const LOGO = "/images/logos/TornadoAlleyLogoWhiteNoWords.png";
 
@@ -57,17 +60,11 @@ const jsonLd = {
   image: "https://tornadoalley.f3nation.com/images/logos/f3_tornado_alley_logo_compressed.jpg",
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Oklahoma City",
+    addressLocality: "Edmond",
     addressRegion: "OK",
     addressCountry: "US",
   },
-  areaServed: [
-    { "@type": "City", name: "Edmond" },
-    { "@type": "City", name: "Oklahoma City" },
-    { "@type": "City", name: "Norman" },
-    { "@type": "City", name: "Yukon" },
-    { "@type": "City", name: "Mustang" },
-  ],
+  areaServed: [{ "@type": "City", name: "Edmond" }],
   sameAs: [
     "https://www.facebook.com/f3tornadoalley",
     "https://www.instagram.com/f3tornadoalley/",
@@ -97,7 +94,7 @@ export default function Home() {
           <div className="absolute bottom-0 left-0 right-0 h-3" style={{ background: GRAD }} />
           <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <p className="ta-fade-up italic font-semibold uppercase tracking-[0.25em] text-base mb-4" style={{ color: ORANGE, animationDelay: "0.05s" }}>
-              {"// Oklahoma City Metro"}
+              {"// Edmond, Oklahoma"}
             </p>
             <h1 className={`${h} ta-fade-up font-black italic uppercase leading-[0.85] text-6xl md:text-8xl lg:text-9xl`} style={{ animationDelay: "0.18s" }}>
               <span className="block">Fitness.</span>
@@ -167,7 +164,7 @@ export default function Home() {
             {[
               { v: String(weeklyWorkouts), l: "Weekly Workouts" },
               { v: String(totalLocations), l: "Locations" },
-              { v: String(regions.length), l: "Regions" },
+              { v: `${daysCovered}`, l: "Days a Week" },
               { v: "100%", l: "Free" },
             ].map((s, i) => (
               <div key={s.l} className={`px-2 ${i < 3 ? "md:border-r-2 md:border-white/10" : ""}`}>
@@ -257,7 +254,7 @@ export default function Home() {
 
         <footer className="border-t border-white/10 py-8 px-6 bg-[#070E1A]">
           <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 uppercase tracking-[0.2em] text-xs text-gray-500 font-semibold italic">
-            <span>F3 Tornado Alley · OKC Metro</span>
+            <span>F3 Tornado Alley · Edmond, OK</span>
             <SocialIcons />
           </div>
         </footer>

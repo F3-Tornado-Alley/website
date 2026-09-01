@@ -27,7 +27,7 @@ pnpm test:e2e        # Run Playwright e2e tests
 - **Home** (`app/page.tsx`) - Hero image, mission statement, 5 core principles, social media links
 - **Getting Started** (`app/getting-started/page.tsx`) - Guide for newcomers
 - **Locations** (`app/locations/page.tsx`) - Interactive map showing all workout locations
-  - **City pages** (`app/locations/[city]/page.tsx`) - Edmond, Mustang, Norman, OKC, Yukon
+  - **City pages** (`app/locations/[city]/page.tsx`) - Edmond
 - **Resources** (`app/resources/page.tsx`) - Links to F3 Nation resources
 
 ### Components
@@ -126,7 +126,7 @@ Small files like icons, favicons, and SVGs can be stored in `public/`:
 ## Location Data Structure
 
 Each region has:
-- **Name**: Region name (e.g., "Tornado Alley", "Boomtown")
+- **Name**: Region name (e.g., "Tornado Alley")
 - **Description**: Brief description of coverage area
 - **Stats URL**: Link to pax-vault.f3nation.com stats
 - **Region Info URL**: Link to regions.f3nation.com (if available)

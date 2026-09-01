@@ -8,26 +8,26 @@ import PageHero from "../components/PageHero";
 export const metadata: Metadata = {
   title: "Workout Locations | Tornado Alley F3",
   description:
-    "Find F3 workout locations across the Oklahoma City metro area including Edmond, Mustang, Norman, OKC, and Yukon. View interactive map and workout schedules.",
-  keywords: ["F3 locations", "Oklahoma City workouts", "Edmond fitness", "Norman F3", "Mustang workouts", "Yukon fitness", "OKC F3"],
+    "Find F3 Tornado Alley workout locations in Edmond, Oklahoma. View the interactive map and workout schedules for every AO.",
+  keywords: ["F3 locations", "Edmond workouts", "Edmond fitness", "Tornado Alley F3", "Oklahoma F3"],
   alternates: { canonical: "/locations/" },
   openGraph: {
     title: "Workout Locations | Tornado Alley F3",
-    description: "Find F3 workout locations across the Oklahoma City metro area. Interactive map with workout times and locations.",
+    description: "Find F3 Tornado Alley workout locations in Edmond, Oklahoma. Interactive map with workout times and locations.",
     url: "https://tornadoalley.f3nation.com/locations/",
     images: ["/images/og-image.png"],
   },
 };
 
-const MAP_SRC = "https://map.f3nation.com/?lat=35.520000&lng=-97.493300&zoom=11";
+const MAP_SRC = "https://map.f3nation.com/?lat=35.653400&lng=-97.478400&zoom=12";
 
 export default function LocationsPage() {
   return (
     <main className={`${saira.className} min-h-screen bg-[#0A1424] text-white`}>
       <PageHero
-        kicker="Oklahoma City Metro"
+        kicker="Edmond, Oklahoma"
         title="Locations"
-        subtitle="Free, peer-led workouts across two regions — just show up."
+        subtitle="Free, peer-led workouts across the Tornado Alley region — just show up."
       />
 
       <div className="max-w-6xl mx-auto px-6 py-12">
@@ -53,7 +53,7 @@ export default function LocationsPage() {
 
           {/* Regions */}
           <div className="lg:col-span-1 flex flex-col gap-4">
-            <h2 className={`${teko.className} font-black italic uppercase text-2xl`}>Our Regions</h2>
+            <h2 className={`${teko.className} font-black italic uppercase text-2xl`}>Our Region</h2>
 
             {regions.map((region, i) => (
               <div

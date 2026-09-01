@@ -5,7 +5,7 @@ A modern, SEO-optimized website for the Tornado Alley F3 fitness community, buil
 ## Features
 
 - **Multi-page site** with Getting Started, Locations, and Resources pages
-- **Location-specific pages** for Edmond, Mustang, Norman, Oklahoma City, and Yukon
+- **Location-specific pages** for the Tornado Alley region (Edmond)
 - **Interactive map integration** showing F3 workout locations
 - **SEO optimized** with comprehensive meta tags and structured data
 - **Responsive design** with Tailwind CSS v4
@@ -55,10 +55,6 @@ This creates an optimized production build in the `out/` directory.
 - **Getting Started** (`/getting-started`) - Guide for newcomers with expectations and steps to join
 - **Locations** (`/locations`) - Interactive map and region information
   - **Edmond** (`/locations/edmond`) - Tornado Alley region workouts
-  - **Mustang** (`/locations/mustang`) - Boomtown region workouts
-  - **Norman** (`/locations/norman`) - Boomtown region workouts
-  - **Oklahoma City** (`/locations/okc`) - Boomtown region workouts
-  - **Yukon** (`/locations/yukon`) - Boomtown region workouts
 - **Resources** (`/resources`) - Links to F3 Nation, Lexicon, Exicon, and Q Source
 
 ### Navigation
@@ -206,16 +202,9 @@ website/
 │   ├── getting-started/
 │   │   └── page.tsx            # Getting Started page
 │   ├── locations/
-│   │   ├── edmond/
-│   │   │   └── page.tsx        # Edmond workouts
-│   │   ├── mustang/
-│   │   │   └── page.tsx        # Mustang workouts
-│   │   ├── norman/
-│   │   │   └── page.tsx        # Norman workouts
-│   │   ├── okc/
-│   │   │   └── page.tsx        # OKC workouts
-│   │   ├── yukon/
-│   │   │   └── page.tsx        # Yukon workouts
+│   │   ├── [city]/
+│   │   │   └── page.tsx        # Per-city workouts (Edmond)
+│   │   ├── data.ts             # Cities, AOs, and region data
 │   │   └── page.tsx            # Locations index with map
 │   ├── resources/
 │   │   └── page.tsx            # Resources page
