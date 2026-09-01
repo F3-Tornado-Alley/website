@@ -7,8 +7,8 @@ import PageHero from "../components/PageHero";
 export const metadata: Metadata = {
   title: "Getting Started | Tornado Alley F3",
   description:
-    "Join Tornado Alley F3 workouts. Learn what to expect, how to get started, and what to bring. Free, peer-led outdoor fitness for men in the Oklahoma City metro area.",
-  keywords: ["F3 getting started", "join F3", "free workout", "outdoor fitness", "Oklahoma City fitness", "mens workout group"],
+    "Join Tornado Alley F3 workouts. Learn what to expect, how to get started, and what to bring. Free, peer-led outdoor fitness for men in Edmond, Oklahoma.",
+  keywords: ["F3 getting started", "join F3", "free workout", "outdoor fitness", "Edmond fitness", "mens workout group"],
   alternates: { canonical: "/getting-started/" },
   openGraph: {
     title: "Getting Started | Tornado Alley F3",

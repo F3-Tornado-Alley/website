@@ -26,8 +26,8 @@ pnpm test:e2e        # Run Playwright e2e tests
 ### Pages
 - **Home** (`app/page.tsx`) - Hero image, mission statement, 5 core principles, social media links
 - **Getting Started** (`app/getting-started/page.tsx`) - Guide for newcomers
-- **Locations** (`app/locations/page.tsx`) - Interactive map showing all workout locations
-  - **City pages** (`app/locations/[city]/page.tsx`) - Edmond, Mustang, Norman, OKC, Yukon
+- **Locations** (`app/locations/page.tsx`) - Interactive map, region card, and a card per AO
+  (single page: there is no per-city route — one region, one city)
 - **Resources** (`app/resources/page.tsx`) - Links to F3 Nation resources
 
 ### Components
@@ -103,7 +103,6 @@ This project uses Next.js with static export (`output: "export"`) configured in 
 - `app/page.tsx` - Home page with hero image and 5 core principles
 - `app/components/Navigation.tsx` - Navigation with active state detection
 - `app/locations/page.tsx` - Interactive map and region cards
-- `app/locations/[city]/page.tsx` - City-specific workout schedules
 - `app/getting-started/page.tsx` - New member guide
 - `app/resources/page.tsx` - F3 resource links
 - `app/globals.css` - Global Tailwind CSS imports
@@ -125,14 +124,17 @@ Small files like icons, favicons, and SVGs can be stored in `public/`:
 
 ## Location Data Structure
 
-Each region has:
-- **Name**: Region name (e.g., "Tornado Alley", "Boomtown")
-- **Description**: Brief description of coverage area
-- **Stats URL**: Link to pax-vault.f3nation.com stats
-- **Region Info URL**: Link to regions.f3nation.com (if available)
-- **Cities**: Array of city objects with name and path
+`app/locations/data.ts` is the single source of truth. It exports:
+- **`aos`**: `Workout[]` — each with name, address, schedule entries, optional
+  notes, coordinates, and an F3 map URL
+- **`region`**: the single `Region` (name, description, stats URL, region info URL)
+- **`aoSlug(name)`**: stable anchor id, shared by the nav ticker links and the AO cards
+- **`googleMapsDir(ao)`**: directions URL built from the AO's coordinates
 
-Cities are listed alphabetically within each region.
+The locations page and the homepage stats both derive from `aos`, so adding or
+removing an AO updates them automatically. The nav ticker in
+`app/components/Navigation.tsx` keeps its own hand-maintained weekly list that
+must be updated to match.
 
 ## Styling Guidelines
 

@@ -7,47 +7,28 @@ import { useState, useSyncExternalStore } from 'react';
 import { oswald } from '../fonts';
 import { aoSlug } from '../locations/data';
 
-// Ticker city label -> city page slug.
-const CITY_SLUG: Record<string, string> = {
-  Edmond: 'edmond',
-  Yukon: 'yukon',
-  OKC: 'okc',
-  Mustang: 'mustang',
-  Norman: 'norman',
-};
-
 // OKC Thunder palette
 const NAVY = '#002D62';
 const SUNSET = '#EF3B24';
 const YELLOW = '#FDBB30';
 
-// One week of workouts across the Tornado Alley + Boomtown regions,
-// ordered Sun -> Sat. Mirrors the per-city schedules under /locations.
+// One week of workouts across the Tornado Alley region,
+// ordered Sun -> Sat. Mirrors the AO schedules on /locations.
 const week = [
   { day: 'SUN', time: '0500', ao: 'The Ubermensch', city: 'Edmond' },
-  { day: 'MON', time: '0515', ao: 'Mill Hill', city: 'Yukon' },
   { day: 'MON', time: '0530', ao: 'Ground Zero', city: 'Edmond' },
   { day: 'MON', time: '0530', ao: 'Forged', city: 'Edmond' },
   { day: 'MON', time: '0530', ao: 'The Gas Station', city: 'Edmond' },
-  { day: 'MON', time: '0530', ao: 'The Bunker', city: 'OKC' },
   { day: 'TUE', time: '0530', ao: 'The Jungle', city: 'Edmond' },
   { day: 'TUE', time: '0530', ao: 'The Junkyard', city: 'Edmond' },
-  { day: 'TUE', time: '0530', ao: "Ol' Glory", city: 'OKC' },
   { day: 'WED', time: '0530', ao: 'Ground Zero', city: 'Edmond' },
   { day: 'WED', time: '0530', ao: 'Forged', city: 'Edmond' },
   { day: 'WED', time: '0530', ao: 'The Gas Station', city: 'Edmond' },
-  { day: 'WED', time: '0530', ao: 'The Corral', city: 'Mustang' },
-  { day: 'WED', time: '0530', ao: 'The Swamp', city: 'OKC' },
   { day: 'THU', time: '0530', ao: 'The Junkyard', city: 'Edmond' },
-  { day: 'THU', time: '0530', ao: "Ol' Glory", city: 'OKC' },
   { day: 'FRI', time: '0530', ao: 'Ground Zero', city: 'Edmond' },
   { day: 'FRI', time: '0530', ao: 'Forged', city: 'Edmond' },
   { day: 'FRI', time: '0530', ao: 'The Jungle', city: 'Edmond' },
-  { day: 'FRI', time: '0530', ao: 'The Swamp', city: 'OKC' },
   { day: 'SAT', time: '0530', ao: 'Iron Pup Tire Co.', city: 'Edmond' },
-  { day: 'SAT', time: '0600', ao: 'The Corral', city: 'Mustang' },
-  { day: 'SAT', time: '0600', ao: 'Later Rather Than Sooner', city: 'Norman' },
-  { day: 'SAT', time: '0600', ao: 'Corporate', city: 'OKC' },
   { day: 'SAT', time: '0700', ao: 'Ground Zero', city: 'Edmond' },
 ];
 
@@ -87,7 +68,7 @@ export default function Navigation() {
         return (
           <Link
             key={`${copy}-${i}`}
-            href={`/locations/${CITY_SLUG[g.city]}#${aoSlug(g.ao)}`}
+            href={`/locations#${aoSlug(g.ao)}`}
             tabIndex={copy === 1 ? -1 : undefined}
             className="flex items-center gap-2.5 px-4 py-2 whitespace-nowrap border-l border-white/10 transition-colors hover:bg-white/10"
           >
