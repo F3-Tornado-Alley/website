@@ -53,8 +53,7 @@ This creates an optimized production build in the `out/` directory.
 
 - **Home** (`/`) - Landing page with hero image, F3 mission statement, 5 core principles, and social media links
 - **Getting Started** (`/getting-started`) - Guide for newcomers with expectations and steps to join
-- **Locations** (`/locations`) - Interactive map and region information
-  - **Edmond** (`/locations/edmond`) - Tornado Alley region workouts
+- **Locations** (`/locations`) - Interactive map, region info, and every AO's schedule and directions
 - **Resources** (`/resources`) - Links to F3 Nation, Lexicon, Exicon, and Q Source
 
 ### Navigation
@@ -169,7 +168,10 @@ Edit `app/layout.tsx` (lines 22-72) to customize:
 
 ### Update Location Data
 
-Edit location pages in `app/locations/[city]/page.tsx` to modify workout schedules and details.
+Edit `app/locations/data.ts` — it is the single source of truth for AOs and the
+region. The locations page and the homepage stats derive from it. The nav ticker
+in `app/components/Navigation.tsx` keeps a separate hand-maintained weekly list
+that needs the same update.
 
 ### Styling
 
@@ -202,10 +204,8 @@ website/
 │   ├── getting-started/
 │   │   └── page.tsx            # Getting Started page
 │   ├── locations/
-│   │   ├── [city]/
-│   │   │   └── page.tsx        # Per-city workouts (Edmond)
-│   │   ├── data.ts             # Cities, AOs, and region data
-│   │   └── page.tsx            # Locations index with map
+│   │   ├── data.ts             # AO and region data (source of truth)
+│   │   └── page.tsx            # Map + region card + AO cards
 │   ├── resources/
 │   │   └── page.tsx            # Resources page
 │   ├── layout.tsx              # Root layout with SEO metadata

@@ -2,18 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { teko, saira } from "./fonts";
 import { ORANGE, BLUE, GRAD, HERO_IMG } from "./brand";
-import { cities } from "./locations/data";
+import { aos } from "./locations/data";
 import SocialIcons from "./components/SocialIcons";
 
 // Live counts derived from the central location data so the stats stay accurate.
-const totalLocations = cities.reduce((sum, c) => sum + c.aos.length, 0);
-const weeklyWorkouts = cities.reduce(
-  (sum, c) => sum + c.aos.reduce((n, ao) => n + ao.schedule.length, 0),
-  0,
-);
-const daysCovered = new Set(
-  cities.flatMap((c) => c.aos.flatMap((ao) => ao.schedule.map((s) => s.day))),
-).size;
+const totalLocations = aos.length;
+const weeklyWorkouts = aos.reduce((n, ao) => n + ao.schedule.length, 0);
+const daysCovered = new Set(aos.flatMap((ao) => ao.schedule.map((s) => s.day))).size;
 
 const LOGO = "/images/logos/TornadoAlleyLogoWhiteNoWords.png";
 

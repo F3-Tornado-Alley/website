@@ -7,18 +7,13 @@ import { useState, useSyncExternalStore } from 'react';
 import { oswald } from '../fonts';
 import { aoSlug } from '../locations/data';
 
-// Ticker city label -> city page slug.
-const CITY_SLUG: Record<string, string> = {
-  Edmond: 'edmond',
-};
-
 // OKC Thunder palette
 const NAVY = '#002D62';
 const SUNSET = '#EF3B24';
 const YELLOW = '#FDBB30';
 
 // One week of workouts across the Tornado Alley region,
-// ordered Sun -> Sat. Mirrors the per-city schedules under /locations.
+// ordered Sun -> Sat. Mirrors the AO schedules on /locations.
 const week = [
   { day: 'SUN', time: '0500', ao: 'The Ubermensch', city: 'Edmond' },
   { day: 'MON', time: '0530', ao: 'Ground Zero', city: 'Edmond' },
@@ -73,7 +68,7 @@ export default function Navigation() {
         return (
           <Link
             key={`${copy}-${i}`}
-            href={`/locations/${CITY_SLUG[g.city]}#${aoSlug(g.ao)}`}
+            href={`/locations#${aoSlug(g.ao)}`}
             tabIndex={copy === 1 ? -1 : undefined}
             className="flex items-center gap-2.5 px-4 py-2 whitespace-nowrap border-l border-white/10 transition-colors hover:bg-white/10"
           >
